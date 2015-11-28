@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="mall"
+  id="myeclipse.1378726065406"
+  context-root="/mall"
+  j2ee-spec="5.0"
+  archive="mall.war">
+  <attributes>
+    <attribute name="webrootdir" value="/WebRoot" />
+  </attributes>
+</project-module>
+

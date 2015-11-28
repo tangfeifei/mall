@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用户登录 - $!config.title - Powered by LakeCloud</title>
+<meta name="keywords" content="$!config.keywords" />
+<meta name="description" content="$!config.description" />
+
+<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+<link href="$!webPath/resources/style/system/front/default/css/goods.css" type="text/css" rel="stylesheet" />
+<link href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type="text/css" rel="stylesheet" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+<script src="$!webPath/resources/js/jquery-ui-1.8.21.js" ></script>
+<script src="$!webPath/resources/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+<script id="mobile_login_html"  LANGUAGE="xml" >
+	<div class="login_usrin">
+ 					<form action="$!webPath/m/mobile_bind.htm" method="post" name="mobileForm" id="mobileForm">
+ 						 <li class="login_usertxt"><b>手机号码：</b>
+ 						 	<input name="mobileNo" type="text" id="mobileNo" style="width:100px" class="usecode" autocomplete="off" />
+ 						 	 <a style="white-space:nowrap" href="javascript:void(0);"  onclick="mobileValidateCode(this);" width=80 class="usenosee">获取验证码</a>
+ 						 	  <span class="login_error_sp" style="display:none"></span>
+ 						 </li>
+ 						  <li class="login_usertxt" style="clear:left"><b>验证码</b>
+                  			 <input name="MOBILE_VALIDATE_CODE" type="text" id="code"  autocomplete="off" style="text-transform:uppercase;" class="usecode" />
+                 			 <span class="login_error_sp" style="display:none"></span>
+                 		</li>
+                 		</form>
+ 					</div>
+
+</script>
+<script>
+jQuery(document).ready(function(){
+  jQuery("#theForm").validate({
+     errorPlacement:function(error,element) {
+      error.appendTo(element.parent().find(".login_error_sp"));  
+	  element.parent().find(".login_error_sp").show('normal');
+    },
+	success:function(label){
+	    label.parent().hide();
+	},
+	rules: {
+			username: "required",
+			password: "required"#if($!config.securityCodeLogin),
+			code:"required"#end},
+		messages: {
+			username: "用户名不能为空",
+			password: "密码不能为空"#if($!config.securityCodeLogin),
+			code:"验证码不能为空"#end
+					}
+  });
+  
+  
+  
+  var tabs= $("#tabs_login").tabs(); 
+  #if($!{config.mobile_login}) 
+  	//jquery 1.8下的写法
+  	/*如果配置了收机登录的话那么添加机登录选择面板*/
+      var tabContentHtml = $("#mobile_login_html").html();
+       tabs.append( "<div id='tab-2'>" + tabContentHtml + "</div>" );
+  	 tabs.tabs("add","#tab-2","手机号码登陆"); 
+  	  jQuery("#mobileForm").validate({
+     errorPlacement:function(error,element) {
+      error.appendTo(element.parent().find(".login_error_sp"));  
+	  element.parent().find(".login_error_sp").show('normal');
+    },
+	success:function(label){
+	    label.parent().hide();
+	},
+	rules: {
+			mobileNo: "required",
+			validatecode: "required"},
+	messages:{
+			mobileNo: "手机号码不能为空",
+			validatecode: "验证码不能为空"
+		}
+  });
+  
+  #end
+  //生成登陆tabs
+
+     $(".login_userbtn").click( function(){
+      var curtabs =$("#tabs_login").tabs('option', 'selected');
+    	var currentForm  =$("form:eq("+curtabs+")");
+      	if( currentForm.valid()){
+      		currentForm.submit();
+      	}
+      	 
+     })
+     
+     
+     
+     
+     
+});
+</script>
+</head>
+<body>
+ 
+
+
+<div class="main"> 
+ <div class="head_login">
+ <div class="login_logo" style="margin-top:30px; padding-left:80px;" >
+ #if($!config.websiteLogo) <a href="$!webPath/index.htm"><img src="$!imageWebServer/$!config.websiteLogo.path/$!config.websiteLogo.name" border="0" /></a>#else<a href="$!webPath/index.htm"><img src="$!imageWebServer/resources/style/system/front/default/images/logo.png"  border="0" /></a>#end
+ </div>
+ </div>
+  <div class="index">
+    <div class="index2">
+      <div class="login_usertb">
+      
+     
+        <div class="login_usetbox">
+              <div id="tabs_login" >
+          		<ul>
+ 					<li><a href="#tab-1">用户名密码登陆</a></li> 
+ 					 
+ 				</ul> 
+ 				<div id="tab-1">
+ 				<div class="login_usrin">
+ 				<form action="$!webPath/lakecloud_login.htm" method="post" name="theForm" id="theForm">
+                <li class="login_usertxt"><b>登录名：</b>
+                  <input name="username" type="text" id="username" class="login_utxt" autocomplete="off" />
+                  <span class="login_error_sp" style="display:none"></span></li>
+                <li class="login_usertxt"><b>密&nbsp;&nbsp;&nbsp;码：</b>
+                  <input name="password" type="password" id="password"  autocomplete="off" class="login_utxt"/>
+                  <span class="login_error_sp" style="display:none"></span></li>
+            #if($!config.securityCodeLogin)
+                <script>
+                 function refreshCode(){
+	                 jQuery("#code_img").attr("src","$!webPath/verify.htm?d"+new Date().getTime());
+                 }
+                 function mobileValidateCode(e){
+                 	function caller(v){
+                 		var timerMax = 60;//60秒内不能提交
+                 		function tick(){
+                 			timerMax--;
+	                			if(timerMax>0){
+	                				window.setTimeout(tick ,1000);
+	                				$(e).html(timerMax+"秒后重试");
+	                			}else{
+	                				$(e).removeAttr("disabled");
+	                				$(e).html("获取验证码");
+	                			}
+                 		}
+                 		var timer = window.setTimeout(tick, 1000);
+                 	}
+                 	
+                 	var mobile = $("#mobileNo").val().replace(/^(?:\s*)(.*?)(?:\s*)$/,"$1");
+                 	
+                 	if(!mobile||mobile==""){
+                 		$(e).attr("title","	请输入手机号码！");
+	                 			 $(e).poshytip({
+									className: 'tip-yellowsimple',
+									showOn: 'focus',
+									alignTo: 'target',
+									alignX: 'left',
+									alignY: 'center',
+									offsetX: 5,
+									showTimeout: 100
+								});
+                 		return ;
+                 	}
+                 	
+                 	 	$(e).attr("disabled" , true);
+                 		caller($(e));
+	                 	jQuery.ajax({
+	                 		url:"$!webPath/m/mobile_notice.htm" ,
+	                 		async:true ,
+	                 		    cache:false,
+	                 		
+	                 		data:{mobileNo:mobile},
+	                 		dataType:"json",
+	                 		success:function(data){
+	                 			 if(data.success=='false'){
+	                 			 	$(e).attr("title",data.message);
+	                 			 }else{
+	                 			 	 $(e).attr("title","短信发送成功，请注意查收！");
+	                 			 }
+	                 			 $(e).poshytip({
+									className: 'tip-yellowsimple',
+									showOn: 'focus',
+									alignTo: 'target',
+									alignX: 'left',
+									alignY: 'center',
+									offsetX: 5,
+									showTimeout: 100
+								});
+	                 		},
+	                 		failure:function(){
+	                 			 $(e).attr("title","短信发送失败！");
+	                 			 $(e).poshytip({
+									className: 'tip-yellowsimple',
+									showOn: 'focus',
+									alignTo: 'target',
+									alignX: 'left',
+									alignY: 'center',
+									offsetX: 5,
+									showTimeout: 100
+								});
+	                 		}
+	                 	})
+	                
+                 }
+                </script>
+                <li class="login_usercode"><b>验证码：</b>
+                  <input name="code" type="text" id="code"  autocomplete="off" style="text-transform:uppercase;" class="usecode" />
+                  <span class="login_codeimg" 
+                  #if($!config.securityCodeType=='voice')style="display:none;"#end> 
+                  <img style="cursor:pointer;" src="$!webPath/verify.htm" id="code_img" onclick="refreshCode();" width="59" height="27" /></span>
+                  <a #if($!config.securityCodeType=='voice')style="display:none;"#end href="javascript:void(0);" onclick="refreshCode();" class="usenosee">看不清换一张</a>
+                  #if($!config.securityCodeType=="voice")
+                  <a href="javascript:void(0);" onclick="readCode('player')" title="朗读验证码"><img src="$!imageWebServer/resources/style/common/images/speaker.gif" border="0" /></a><span id="player"></span>
+                  #end<span class="login_error_sp" style="display:none"></span>
+                  </li>
+                  #if($!config.securityCodeType=="voice")
+                   <script>
+				   function readCode(id){
+                         var  s = "<embed id='sound_play' name='sound_play' src='$!webPath/resources/flash/soundPlayer.swf?" + (new Date().getTime()) + "' FlashVars='url=$!webPath"+ "' width='0'   height='0' allowScriptAccess='always' type='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' /></embed>";
+                    jQuery("#"+id).html(s);
+                    }
+				   </script>
+                   #end
+            #end 
+               
+              </form>
+              </div>
+ 				</div>
+ 				 
+			</div> 	
+          <div class="login_usrin">
+   
+            <ul>
+             <li class="login_usercheck"><a href="$!webPath/forget.htm" class="forgetpsw">忘记登录密码?</a><a href="$!webPath/register.htm" class="user_regist">免费注册</a></li>
+                <li>
+                  <input type="button" class="login_userbtn" value="登录"/>
+                </li> 
+              #if($!{config.sina_login}||$!{config.qq_login})
+              <li class="login_b"><b>合作伙伴账号登录:</b> <span class="login_bsp"> #if($!{config.qq_login}) <a href="$!webPath/qq_login_api.htm" target="_blank"><img src="$!webPath/resources/style/system/front/default/images/login_qq.jpg" width="64" height="21" /></a> #end
+                #if($!{config.sina_login}) <a href="$!webPath/sina_login_api.htm" target="_blank"><img src="$!webPath/resources/style/system/front/default/images/login_wb.jpg" width="76" height="21" /></a> #end </span> </li>
+              #end
+            </ul>
+          </div>
+        </div>
+        <div class="login_usertb_bgimg"><span class="imgcenter_span">
+        #set($img="$!webPath/$!imageViewTools.random_login_img()")
+          <p><img src="$!img" width="490" height="400" /></p>
+          </span></div>
+      </div>
+    </div>
+  </div>
+  $!httpInclude.include("/footer.htm")
+  $!uc_logout_js
+  </div>
+</body>
+</html>

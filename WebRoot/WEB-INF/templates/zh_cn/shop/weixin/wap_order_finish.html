@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>微信商城 - 支付结果</title>
+<link href="$!webPath/resources/style/weixin/default/css/phone.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="paystep_info">
+  <h3 class="paystep_h3"><span>支付结果</span></h3>
+  <span class="payinfotop"><i>订单编号：</i>$!{obj.order_id}</span> <span class="payinfotop"> <i>支付金额：</i><em>¥$!{obj.totalPrice}</em></span> #if($!obj.order_status==0)
+  #set($status="已取消")
+  #end
+  #if($!obj.order_status==10)
+  #set($status="待付款")
+  #end
+  #if($!obj.order_status==15)
+  #set($status="线下支付待审核")
+  #end
+  #if($!obj.order_status==20)
+  #set($status="付款成功")
+  #end
+  #if($!obj.order_status==30)
+  #set($status="已发货")        
+  #end                
+  #if($!obj.order_status==40)
+  #set($status="已收货")
+  #end
+  #if($!obj.order_status==50)
+  #set($status="已完成,已评价")                                              
+  #end
+  #if($!obj.order_status==60)
+  #set($status="已结束")                                              
+  #end <span class="paymode"><i>支付状态：</i><b style="color:#F00;">$!status</b></span> 
+  #if($!obj.order_status==10)
+  <span class="paymodebtn"> <a href="$!webPath/weixin/order_pay_view.htm?id=$!obj.id" class="paym_btn">返回重新支付</a>
+  #end
+   <a href="$!webPath/weixin/buyer/order_view.htm?id=$!obj.id" class="paym_btn">查看订单信息</a> </span> </div>
+ $!httpInclude.include("/weixin/footer.htm")
+ $!httpInclude.include("/weixin/nav_bottom.htm")
+</body>
+</html>

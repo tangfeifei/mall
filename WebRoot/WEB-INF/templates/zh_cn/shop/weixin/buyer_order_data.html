@@ -1,0 +1,82 @@
+#foreach($obj in $objs)
+<hgroup class="order_hgroup_h4">
+<h4 class="shop_name"> <span><i>店铺名称：</i><strong>$!{obj.store.store_name}</strong></span></h4>
+</hgroup>
+#foreach($gc in $obj.gcs)
+#if($!obj.order_status==0)
+#set($status="已取消")
+#end
+#if($!obj.order_status==10)
+#set($status="待付款")
+#end
+#if($!obj.order_status==15)
+#set($status="线下支付待审核")
+#end
+#if($!obj.order_status==16)
+#set($status="货到付款待发货")
+#end
+#if($!obj.order_status==20)
+#set($status="已付款")
+#end
+#if($!obj.order_status==30)
+#set($status="已发货")        
+#end                
+#if($!obj.order_status==40)
+#set($status="已收货")
+#end
+#if($!obj.order_status==45)
+#set($status="买家申请退货")
+#end
+#if($!obj.order_status==46)
+#set($status="退货中")
+#end
+#if($!obj.order_status==47)
+#set($status="退货完成，已结束")
+#end
+#if($!obj.order_status==48)
+#set($status="卖家拒绝退货")
+#end
+#if($!obj.order_status==49)
+#set($status="退货失败")
+#end
+#if($!obj.order_status==50)
+#set($status="已完成,已评价")                                              
+#end
+#if($!obj.order_status==60)
+#set($status="已结束")                                              
+#end
+#if($!obj.order_status==65)
+#set($status="已结束，不可评价")                                              
+#end
+#if($!gc.goods.goods_main_photo)                #set($img="$!webPath/$!{gc.goods.goods_main_photo.path}/$!{gc.goods.goods_main_photo.name}_small.$!{gc.goods.goods_main_photo.ext}")
+#else
+#set($img="$!webPath/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+#end
+<section class="waitingpay_list"> <a href="$!webPath/weixin/buyer/order_view.htm?id=$!{obj.id}">
+<dl>
+<dt><img src="$!img" width="100" height="100"> <i>$!{status}</i></dt>
+<dd>
+<h3>$!{gc.goods.goods_name}     
+#if($!{gc.goods.group_buy}==2) <strong style="color:#F00">(团购)</strong> #end
+#if($!{obj.goods.delivery_status}==2) <strong style="color:#F00">[买就送]</strong> #end
+#if($!{gc.goods.bargain_status}==2) <strong style="color:#F00">(特价)</strong> #end
+#if($!{gc.cart_type}=="combin") <strong style="color:#F00">【组合商品】</strong> #end</h3>
+<p><strong>¥$!{gc.goods.store_price}</strong>共$!{gc.count}个宝贝</p>
+<span> </span> </dd>
+</dl>
+</a> </section>
+#end
+<div class="order_totalprice"> <strong>#if($!obj.order_status==10) <a href="$!webPath/weixin/order_pay_view.htm?id=$!obj.id">
+<button class="waitingpay_red_btn right">付款</button>
+</a> 
+#end
+#if($!obj.order_status==30) <a href="$!webPath/weixin/buyer/order_cofirm.htm?id=$!{obj.id}">
+<button class="waitingpay_red_btn right">收货</button>
+</a>
+#end      
+#if($!obj.order_status>=40 && $!obj.order_status!=47 && $!obj.order_status!=50 && $!obj.order_status!=60 && $!obj.order_status!=65)
+<a href="$!webPath/weixin/buyer/order_evaluate.htm?id=$!{obj.id}">
+<button class="waitingpay_red_btn right">评价</button>
+</a> 
+#end </strong> <span>订单总额：$!obj.totalPrice</span> </div>
+#end

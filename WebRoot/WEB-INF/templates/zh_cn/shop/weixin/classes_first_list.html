@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>微信商城 - 分类列表</title>
+<link href="$!webPath/resources/style/weixin/default/css/phone.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="page_bottom">
+<hgroup>
+  <h3 class="goods_car"><a href="javascript:history.go(-1);"><em></em></a><span><b>分类列表</b></span></h3>
+</hgroup>
+<div class="class_list">
+  <ul>
+    #foreach($usergoodsClass in $usergoodsClasses)
+    <li><a href="$!webPath/weixin/classes_second_list.htm?class_id=$!usergoodsClass.id">$!usergoodsClass.ClassName</a></li>
+    #end
+  </ul>
+</div>
+</div>
+$!httpInclude.include("/weixin/nav_bottom.htm")
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>微信商城 - 预存款支付</title>
+<link href="$!webPath/resources/style/weixin/default/css/phone.css" rel="stylesheet" type="text/css" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+<script src="$!webPath/resources/js/jquery.validate.min.js"></script>
+<script>
+jQuery(document).ready(function(){
+  jQuery("#theForm").validate({
+    rules:{
+		pay_msg:{required:true}
+	},
+	messages:{
+	    pay_msg:{
+			required:"付款说明不能为空"
+		}
+	}
+ });
+});
+</script>
+</head>
+<body>
+<div class="page_bottom">
+<hgroup>
+  <h3 class="goods_car"><a href="javascript:history.go(-1);"><em></em></a><span><b>预付款支付</b></span></h3>
+</hgroup>
+   <form action="$!webPath/weixin/order_pay_balance.htm" method="post" id="theForm">
+    <div class="index2">
+      <div class="buy_step_last">
+        <ul>
+          <li>
+            <h1>预存款支付</h1>
+          </li>
+          <li>
+            <h3>请输入预存款留言信息 (预存款留言有利于商家迅速辨别买家，您也可以稍后在用户中心“我的订单”中进行付款)：</h3>
+          </li>
+          <li><span class="steptext">
+            <textarea name="pay_msg" cols="" rows="6" id="pay_msg"></textarea>
+          </span></li>
+          <li><span class="stepbtn">
+            <input name="" type="submit"  value="提交" style="cursor:pointer;"/>
+          </span>
+            <input name="order_id" type="hidden" id="order_id" value="$!order_id" />
+          </li>
+        </ul>
+      </div>
+    </div>
+    </form>
+    $!httpInclude.include("/weixin/footer.htm")
+    </div>
+$!httpInclude.include("/weixin/nav_bottom.htm?op=account")
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>缴纳店铺保证金  -  Powered by LakeCloud</title>
+<meta name="keywords" content="$!config.keywords" />
+<meta name="description" content="$!config.description" />
+<meta name="generator" content="LakeCloud 1.5" />
+<meta name="author" content="www.chinacloud.net">
+<meta name="copyright" content="LakeCloud Inc. All Rights Reserved">
+<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+<link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+<script src="$!webPath/resources/js/jquery.validate.min.js"></script>
+<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+<script>
+jQuery(document).ready(function(){
+  jQuery("#theForm").validate({
+       rules: {
+			gold_payment:{required:true},
+			gold_money:{required:true,digits:true,range:[1,100000]}
+		  },
+	   messages: {
+		    gold_payment:{required:"支付方式不能为空"},
+			gold_money:{required:"兑换金额不能为空",digits:"只接受整数兑换",range:"请输入大于{0}的金额数字"}
+	     }
+  });
+});
+</script>
+</head>
+<body>
+$!httpInclude.include("/top.htm")
+<div class="main"> $!httpInclude.include("/seller/nav_head.htm")
+  <div class="user_center">
+    <table width="1000" border="0" cellspacing="0" cellpadding="0" class="user_table">
+      <tr>  $!httpInclude.include("/seller/nav.htm?op=store_deposit")
+        <td id="centerbg" valign="top">
+         <div class="buyer_position">
+           <div class="buyer_p_box"><a href="$!webPath/seller/index.htm">卖家中心</a> > <span>缴纳店铺保证金</span></div></div>
+        <div class="productmain">
+            <div class="ordernav">
+              <ul class="orderul">
+               <li class="this"><a href='$!webPath/seller/store_deposit.htm' >缴纳店铺保证金</a></li>
+               <li><a href='$!webPath/seller/store_deposit_log.htm' >保证金日志</a></li>
+              </ul>
+            </div>
+            <div class="ordercon">
+              <div class="addnav">
+              #if($!user.store_deposit_status==0)
+                <form action="$!webPath/seller/store_deposit_save.htm" method="post" name="theForm" id="theForm">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="addnavtable">
+                    <tr>
+                      <td align="right" valign="top" class="modifysp">保证金说明：</td>
+                      <td  class="px10">缴纳保证金后，店铺出现保证金缴纳图标及保证金说明，用户购物更加放心</td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top" class="modifysp">店铺保证金：</td>
+                      <td  class="px10">$!{store.grade.store_deposit} 元</td>
+                    </tr>
+                    <tr>
+                      <td width="122" align="right" valign="top" class="modifysp"><span>支付方式：</span><span><strong class="red" style="font-size:14px;">*</strong></span></td>
+                      <td width="686"  class="px10"><select name="dp_payment" id="dp_payment">
+                          <option value="" selected="selected">请选择支付方式</option>
+                          
+                      #foreach($payment in $payments)
+                      
+                          <option value="$!payment.mark">$!payment.name</option>
+                          
+                      #end
+                    
+                        </select></td>
+                    </tr>
+                    
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td class="px10"><span class="setsub">
+                        <input name="" type="submit"  value="提交" style="cursor:pointer;"/>
+                        <input name="deposit_session" type="hidden" id="deposit_session" value="$!deposit_session" />
+                        <input name="dp_amount" type="hidden" id="dp_amount" value="$!store.grade.dp_amount" />
+                      </span></td>
+                    </tr>
+                  </table>
+                </form>
+              #end
+              #if($!user.store_deposit_status==5)
+               <table width="100%" border="0" cellspacing="0" cellpadding="0" class="addnavtable">
+                    <tr>
+                      <td align="center" valign="top" class="modifysp">您已经提交“线下支付保证金”审核请求，等待管理员审核</td>
+                    </tr>
+               </table>
+              #end
+              #if($!user.store_deposit_status==10)
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" class="addnavtable">
+                    <tr>
+                      <td align="center" valign="top" class="modifysp">您已经成功缴纳保证金!</td>
+                    </tr>
+               </table>
+              #end
+              </div>
+            </div>
+          </div></td>
+      </tr>
+    </table>
+  </div>
+  $!httpInclude.include("/footer.htm") </div>
+</body>
+</html>

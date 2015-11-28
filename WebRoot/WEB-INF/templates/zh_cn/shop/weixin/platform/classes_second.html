@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>$!parent.className</title>
+<link href="$!webPath/resources/style/weixin/default/css/platform.css" rel="stylesheet" type="text/css" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+<script>
+jQuery(document).ready(function() {
+	jQuery("a[id^=p_]").click(function(){
+		jQuery(".cate_fl li a[type='1']").attr("class","nav_name");
+		jQuery(".cate_fl li i[type='1']").hide();
+		jQuery(".cate_fl div.cate_fr[type='1']").hide();
+		var id=	jQuery(this).attr("mark");
+		jQuery(".cate_fl li a[mark='"+id+"']").attr("class","this_name");
+		jQuery(".cate_fl li i[mark='"+id+"']").show();
+		jQuery(".cate_fl div.cate_fr[mark='"+id+"']").show();
+		
+		});  	  
+});
+</script>
+<style type="text/css">
+ html,body{ height:100%}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="main">
+#set($logo="$!webPath/resources/style/weixin/default/images/logo.png")
+#if($!config.store_weixin_logo)
+#set($logo="$!webPath/$!config.store_weixin_logo.path/$!config.store_weixin_logo.name")
+#end 
+    <div class="mall_back"><a href="javascript:history.go(-1);"><img src="$!webPath/resources/style/weixin/default/images/back.png"></a></div>
+<div class="logo" style="padding-left:90px"><img src="$!logo" width="83" height="23" /></div>
+  </div>
+</header>
+
+<div class="main" style="height:100%">
+	<div class="cate_del">
+    	<div class="cate_fl">
+        	<ul>
+   		#foreach($child in $parent.childs)
+            <li>
+            <a #if($!gc_id==$!child.id || $!pgc_id&& $!velocityCount==1) class="this_name" #else class="nav_name" #end  href="javascript:void(0);" id="p_$!{child.id}" type="1" mark="$!{child.id}">$!child.className</a>
+            <i mark="$!{child.id}" #if($!gc_id==$!child.id || $!pgc_id&& $!velocityCount==1) style="display:block" #else style="display:none" #end  type="1"><img src="$!webPath/resources/style/weixin/default/images/cate_fl.png"></i>
+                <div class="cate_fr" #if($!gc_id==$!child.id || $!pgc_id&& $!velocityCount==1) style="display:block" #else style="display:none" #end mark="$!{child.id}"  type="1">
+                #foreach($c in $child.childs)
+                <a href="$!webPath/weixin/platform/search_goods_list.htm?gc_id=$!{c.id}">$!c.className</a>
+                #end
+                </div>
+            </li>
+           #end
+            </ul>
+        </div> 
+    </div>
+</div>
+</body>
+</html>

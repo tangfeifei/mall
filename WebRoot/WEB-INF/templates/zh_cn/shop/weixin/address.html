@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>微信商城 - 收货地址列表</title>
+<link href="$!webPath/resources/style/weixin/default/css/phone.css" rel="stylesheet" type="text/css" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+<script>
+function address_add(){
+	window.location.href="$!webPath/weixin/buyer/address_add.htm";
+	}
+function address_edit(id){
+	window.location.href="$!webPath/weixin/buyer/address_edit.htm?id="+id;
+	}
+function address_del(id){
+	window.location.href="$!webPath/weixin/buyer/address_del.htm?mulitId="+id;
+	}	
+</script>
+<body>
+<div class="page_bottom">
+<hgroup>
+  <h3 class="goods_car"><a href="javascript:history.go(-1);"><em></em></a><span><b>用户中心</b></span></h3>
+</hgroup>
+<ul class="add_address">
+  #foreach($obj in $objs)
+  #set($address="$!obj.area.parent.parent.areaName $!obj.area.parent.areaName $!obj.area.areaName")
+  <li>
+    <table border="0" cellpadding="0" cellspacing="0" class="address_table_add">
+      <tr>
+        <td width="90" valign="top" class="add_address_td">收货地址：</td>
+        <td>$!address $!obj.area_info</td>
+      </tr>
+      <tr>
+        <td  valign="top" class="add_address_td">收货人：</td>
+        <td> $!obj.trueName</td>
+      </tr>
+      <tr>
+        <td  valign="top" class="add_address_td">电话：</td>
+        <td> $!obj.telephone $!obj.mobile </td>
+      </tr>
+    </table>
+    <span class="button_fun">
+    <button type="button" onClick="address_edit('$!obj.id')">编辑</button>
+    <button type="button" onClick="address_del('$!obj.id')">删除</button>
+    </span> </li>
+  #end
+</ul>
+<div class="button_address_box">
+  <button type="button" class="add_address_btn" onClick="address_add()">新增收货地址</button>
+</div>
+</div>
+$!httpInclude.include("/weixin/nav_bottom.htm?op=account")
+</body>
+</html>

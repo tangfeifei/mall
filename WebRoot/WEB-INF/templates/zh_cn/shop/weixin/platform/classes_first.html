@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>类目列表</title>
+<link href="$!webPath/resources/style/weixin/default/css/platform.css" rel="stylesheet" type="text/css" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+</head>
+<body style="background-color:#ffffff;">
+<header>
+  <div class="main">
+#set($logo="$!webPath/resources/style/weixin/default/images/logo.png")
+#if($!config.store_weixin_logo)
+#set($logo="$!webPath/$!config.store_weixin_logo.path/$!config.store_weixin_logo.name")
+#end  
+    <div class="mall_back"><a href="javascript:history.go(-1);"><img src="$!webPath/resources/style/weixin/default/images/back.png"></a></div>
+    <div class="logo" style="padding-left:90px"><img src="$!logo" width="83" height="23" /></div>
+  </div>
+</header>
+#foreach($obj in $objs)
+<div class="main">
+  <div class="cate_list">
+    <ul>
+      <li><b>$!obj.className</b></li>
+      #if($!obj.childs.size()>0)
+      <li> #foreach($child in $obj.childs) <a href="$!webPath/weixin/platform/classes_second.htm?gc_id=$!{child.id}">$!child.className</a> #end </li>
+      #end
+    </ul>
+  </div>
+</div>
+<div class="line"></div>
+#end
+<div class="main"> $!httpInclude.include("/weixin/platform/footer.htm") </div>
+$!httpInclude.include("/weixin/platform/nav_bottom.htm?op=classes")
+</body>
+</html>

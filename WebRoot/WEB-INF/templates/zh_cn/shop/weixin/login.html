@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>微信商城 - 用户登录</title>
+<link href="style/css/phone.css" rel="stylesheet" type="text/css" />
+<link href="$!webPath/resources/style/weixin/default/css/phone.css" rel="stylesheet" type="text/css" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+<script src="$!webPath/resources/js/jquery.validate.min.js"></script>
+<script>
+jQuery(document).ready(function(){
+  jQuery("#theForm").validate({
+     errorPlacement:function(error,element) {
+      error.appendTo(element.parent().find(".login_error_sp"));  
+	  element.parent().parent().addClass(" phone_login_red");
+    },
+	success:function(label){
+	    label.parent().hide();
+	},
+	rules: {
+			username: "required",
+			password: "required"}
+  });
+});
+function saveForm(){
+	jQuery("#theForm").submit();
+	}
+function register(){
+	window.location.href="$!webPath/weixin/register.htm"
+	}	
+</script>
+</head>
+<body class="login_bg">
+<hgroup>
+  <h3 class="goods_car"><a href="javascript:history.go(-1);"><em></em></a><span><b>用户登陆</b></span></h3>
+</hgroup>
+<form action="$!webPath/lakecloud_login.htm" method="post" name="theForm" id="theForm">
+  <div class="phone_login">
+    <section class="section_login"><span>用&nbsp;户&nbsp;名：</span>
+      <input name="username" id="username" placeholder="用户名" type="text" class="input_txt">
+    </section>
+    <section class="section_login none_line"><span>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
+      <input name="password" id="password" type="password" class="input_txt" placeholder="密码">
+    </section>
+    <div class="cmd">
+      <button class="cmd_regist" type="button" onClick="register()">注册</button>
+      <button class="cmd_login" type="button" onClick="saveForm()">登录</button>
+    </div>
+  </div>
+</form>
+</body>
+</html>

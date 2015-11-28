@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>活动商品</title>
+<link href="$!webPath/resources/style/weixin/default/css/platform.css" rel="stylesheet" type="text/css" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+<script>
+jQuery(document).ready(function() {
+   var begin_count =12;
+	jQuery(window).scroll(function(){
+	//滚动加载
+	 if (jQuery(document).scrollTop() >= jQuery(document).height() - jQuery(window).height()) {
+		 var type = jQuery("#type").val(); 
+	     jQuery.post("$!webPath/weixin/platform/activity_goods_data.htm",
+				  {
+				  "begin_count":begin_count
+				  },
+				   function(data){
+					  if(data){
+					   jQuery(".mall_list").append(data)
+					   begin_count = begin_count +12;
+					  }else{
+					   jQuery(".load_more").hide();
+					   jQuery("#no_more").show();
+					  } 
+				  },
+				 "text");	
+     }
+ 
+	 });		  	  
+});
+</script>
+</head>
+
+<body>
+<div class="page_bottom">
+  <div style=" width:100%; position:fixed; top:0px; left:0px">
+    <header>
+      <div class="main">
+#set($logo="$!webPath/resources/style/weixin/default/images/logo.png")
+#if($!config.store_weixin_logo)
+#set($logo="$!webPath/$!config.store_weixin_logo.path/$!config.store_weixin_logo.name")
+#end
+        <div class="mall_back"><a href="javascript:history.go(-1);"><img src="$!webPath/resources/style/weixin/default/images/back.png"></a></div>
+        <div class="logo" style="padding-left:90px"><img src="$!logo" width="83" height="23" /></div>
+      </div>
+    </header>
+    <div class="title_width" style="display:">
+      <div class="main">
+        <div class="title">
+          <ul>
+            <li class="this"><a href="$!webPath/weixin/platform/activity_goods_list.htm">活动商品</a></li>
+            <li><a href="$!webPath/weixin/platform/bargain_goods_list.htm">天天特价</a></li>
+            <li><a href="$!webPath/weixin/platform/combin_goods_list.htm">组合销售</a></li>
+            <li><a href="$!webPath/weixin/platform/delivery_goods_list.htm">买就送</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main" style="margin-top:90px;">
+    <div class="mall_list"> #foreach($obj in $objs)
+      #set($img="$!imageWebServer/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+      #if($!obj.ag_goods.goods_main_photo)
+      #set($img="$!imageWebServer/$!{obj.ag_goods.goods_main_photo.path}/$!{obj.ag_goods.goods_main_photo.name}")
+      #end
+      <ul class="mall_list_ul">
+        <li><a href="$!webPath/weixin/goods.htm?goods_id=$!obj.ag_goods.id"><img src="$!img"></a></li>
+        <li class="baby_name"><a href="$!webPath/weixin/goods.htm?goods_id=$!obj.ag_goods.id">$!obj.ag_goods.goods_name</a></li>
+        <li class="goods_price">原价：¥$!obj.ag_goods.goods_price</li>
+        <li class="price"><span>活动价：</span><strong>¥$!obj.ag_goods.goods_current_price</strong></li>
+      </ul>
+      #end </div>
+    #if($!objs.size()>0)
+    <div class="load_more"><a href="javascript:void(0);">#if($!objs.size()>=12)正在加载中...#else 没有更多数据 #end</a></div>
+    <div class="load_more" id="no_more" style="display:none"><a href="javascript:void(0);" style="color:#F00">没有更多数据</a></div>
+    #else <span class="goods_none"><img src="$!webPath/resources/style/weixin/default/images/no_date.png" width="80"  height="62"/>
+    <p>对不起，没有相应数据！</p>
+    </span> #end </div>
+</div>
+$!httpInclude.include("/weixin/platform/nav_bottom.htm?op=activity")
+</body>
+</html>

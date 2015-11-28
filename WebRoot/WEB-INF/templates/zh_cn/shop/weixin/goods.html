@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>微信商城 - $!obj.goods_name</title>
+<link href="$!webPath/resources/style/weixin/default/css/phone.css" rel="stylesheet" type="text/css" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+<script>
+#set($group=0)
+#set($current_price=$!obj.goods_current_price)
+#if($!{obj.group_buy}==2)
+  #set($group=1)
+#end
+#if($!group==1)
+  #foreach($info in $obj.group_goods_list)
+    #if($info.group.id==$!obj.group.id)
+	  var store_price=$!info.gg_price;
+	  #set($current_price=$!{info.gg_price})
+      #if($!info.gg_max_count>0)
+        var goods_inventory=$!info.gg_max_count;
+      #else
+        var goods_inventory=$!info.gg_count;
+      #end
+	#end
+  #end
+#else
+  var store_price=$!obj.goods_current_price;
+  var goods_inventory=$!obj.goods_inventory;
+#end
+//
+var goods_price=$!obj.goods_price
+jQuery(document).ready(function(){
+
+jQuery("#goods_count").keyup(function(){
+   var goods_count=jQuery(this).val();
+   if(goods_count>goods_inventory){
+	  #if($!obj.group_buy==2)
+	    #if($!obj.group_goods.gg_max_count>0)
+		  jQuery("#error_goods_inventory").show().find("span").html("超出团购运行最大数量，请重新输入购买数量！").parent().fadeOut(3000);
+		#else
+		  jQuery("#error_goods_inventory").show().find("span").html("超出团购库存数量，请重新输入购买数量！").parent().fadeOut(3000);
+		#end
+	  #else
+	  jQuery("#error_goods_inventory").show().find("span").html("超出店铺库存，请重新输入购买数量！").parent().fadeOut(3000);
+	  #end
+	  jQuery(this).val(goods_inventory);
+	}
+});
+jQuery("a[id^=count_]").click(function(){
+	var count_type= jQuery(this).attr("count_type");
+	var goods_count=jQuery("#goods_count").val();
+	if(count_type=='cut'){
+		if(goods_count>=1){
+		goods_count = goods_count-1;
+		}	
+	}
+	else{
+	goods_count = goods_count-0+1;
+	if(goods_count>goods_inventory){
+	  #if($!obj.group_buy==2)
+	    #if($!obj.group_goods.gg_max_count>0)
+		  jQuery("#error_goods_inventory").show().find("span").html("已经是团购运行最大数量！").parent().fadeOut(3000);
+		#else
+		  jQuery("#error_goods_inventory").show().find("span").html("已经是团购库存最大数量！").parent().fadeOut(3000);
+		#end
+	  #else
+	  jQuery("#error_goods_inventory").show().find("span").html("已经是店铺库存最大数量！").parent().fadeOut(3000);
+	  #end
+	  goods_count = goods_count-1;
+	}
+	}
+	jQuery("#goods_count").val(goods_count);		
+	});
+  //
+
+});
+var time=0;
+var time_id;
+function add_cart(){
+#if($!user.id==$!obj.goods_store.user.id)
+  jQuery("#error_goods_inventory").show().find("span").html("不能购买自己的商品!").parent().fadeOut(3000);
+#else
+  var add=true
+  var gsp="";
+  if(jQuery(".choose_size").length==0){
+    add=true;
+  }else{
+	jQuery(".choose_size").each(function(){
+	   jQuery.each(jQuery(this).find("a[class=this]"),function(){
+		  gsp=jQuery(this).attr("gsp")+","+gsp; 
+	   });
+       if(jQuery(this).find("a[class=this]").length==0) add=false;
+	});
+  } 
+  var count=jQuery("#goods_count").val();
+  if(count==0){
+    add=false;
+jQuery("#error_goods_inventory").show().find("span").html("至少购买一件商品!").parent().fadeOut(3000);	
+	return;
+  }
+  if(goods_inventory==0){
+    add=false;
+	jQuery("#error_goods_inventory").show().find("span").html("商品库存为0，不能购买!").parent().fadeOut(3000);
+	return;
+  }  
+  if(add){
+	jQuery.post("$!webPath/weixin/add_goods_cart.htm",{"id":"$!obj.id","count":count,"price":store_price,"gsp":gsp},function(data){
+	jQuery("div.nav_width ul li[op='cart']").find("em").html(data.count);
+		 //更新顶部购物车信息
+		 jQuery("#error_goods_inventory").show().find("span").html("添加购物车成功！<a href='$!webPath/weixin/goods_cart1.htm'> >>查看购物车</a>").parent().fadeOut(5000);
+	},"json");
+  }else{
+    jQuery("#error_goods_inventory").show().find("span").html("请选择商品属性!").parent().fadeOut(3000);
+  }
+ #end
+}
+function buy_goods(){
+#if($!user.id==$!obj.goods_store.user.id)
+ jQuery("#error_goods_inventory").show().find("span").html("不能购买自己的商品!").parent().fadeOut(3000);
+#else
+  var add=true
+  var gsp="";
+  if(jQuery(".choose_size").length==0){
+    add=true;
+  }else{
+	jQuery(".choose_size").each(function(){
+	   jQuery.each(jQuery(this).find("a[class=this]"),function(){
+		  gsp=jQuery(this).attr("gsp")+","+gsp; 
+	   });
+       if(jQuery(this).find("a[class=this]").length==0) add=false;
+	});
+  }
+  var count=jQuery("#goods_count").val();
+  if(count==0){
+    add=false;
+	jQuery("#error_goods_inventory").show().find("span").html("至少购买一件商品!").parent().fadeOut(3000);
+	return;
+  }
+  if(goods_inventory==0){
+    add=false;
+	jQuery("#error_goods_inventory").show().find("span").html("商品库存为0,不能购买!").parent().fadeOut(3000);
+	return;
+  }    
+  var buy_type=arguments[0];
+  if(add){
+	jQuery.post("$!webPath/weixin/add_goods_cart.htm",{"id":"$!obj.id","count":count,"price":store_price,"gsp":gsp,"buy_type":buy_type},function(data){
+	     jQuery("#cart_goods_count").html(data.count);
+		 jQuery("#cart_goods_totalprice").html(data.total_price);
+		 window.location.href="$!webPath/weixin/goods_cart1.htm";
+	},"json");
+  }else{
+	jQuery("#goods_spec_info").removeClass().addClass("detailsbottom detailsbottom_hover");  
+	jQuery("#error_goods_inventory").show().find("span").html("请选择商品属性！").parent().fadeOut(3000);
+  }
+ #end  
+}
+
+#if($!user)
+function save_goods(){
+    #if($!user.id==$!obj.goods_store.user.id)
+	  jQuery("#error_goods_inventory").show().find("span").html("不能收藏自己的商品！").parent().fadeOut(3000);
+	#else
+	  jQuery.post("$!webPath/weixin/add_goods_favorite.htm",{"id":"$!obj.id"},function(data){
+		 if(data==0){
+			jQuery("#error_goods_inventory").show().find("span").html("商品收藏成功！").parent().fadeOut(3000);
+		 }
+		 if(data==1){
+		jQuery("#error_goods_inventory").show().find("span").html("已经收藏该商品！").parent().fadeOut(3000);	
+		 }
+	  },"text");
+	#end
+	};
+#else	
+	function save_goods(){
+		window.location.href="$!webPath/weixin/login.htm"
+		}
+#end
+</script>
+</head>
+<body class="login_bg">
+
+<div class="page_bottom">
+<hgroup>
+  <h3 class="goods_car"><a href="javascript:history.go(-1);"><em></em></a><span><b>商品展示</b></span></h3>
+</hgroup>
+<div class="details_top">
+        #if($!obj.goods_main_photo)                      
+         #set($img="$!imageWebServer/$!{obj.goods_main_photo.path}/$!{obj.goods_main_photo.name}")
+        #else
+          #set($img="$!imageWebServer/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+        #end
+  <div class="details_img"> <img src="$!img" width="250" height="250" ></div>
+  <span class="details_sp"></span>
+  <p class="details"><span class="details_name">$!{obj.goods_name}</span><i class="details_star">
+  <a href="javascript:void(0);" onClick="save_goods()"><img src="$!webPath/resources/style/weixin/default/images/star_yellow.png" width="32" height="31"></a></i></p>
+</div>
+<div class="details_buy">
+  <ul>
+    <li class="details_buy_price"><del>原价：¥$!{obj.goods_price}</del></li>
+    <li class="details_buy_money">商城特卖：<strong>¥$!{obj.store_price}</strong></li>
+    
+    <li>
+ <script>
+  function goods_spec_set(obj){
+	var spec=jQuery(obj).attr("spec");
+	var gsp="";
+	var load=true;
+	jQuery(".choose_size a[spec="+spec+"]").removeClass("this");
+	jQuery(obj).addClass("this");
+	jQuery(".choose_size").each(function(){
+		jQuery.each(jQuery(this).find("a[class=this]"),function(){
+		  gsp=jQuery(this).attr("gsp")+","+gsp; 
+		});
+	});
+	jQuery(".choose_size").each(function(){
+		 if(jQuery(this).find("a[class=this]").length==0) load=false;
+	 });
+  if(load){
+	jQuery("#goods_spec_info").removeClass().addClass("detailsbottom");  
+	jQuery("#goods_spec_info_close").hide();    
+	jQuery("#goods_spec_chose").hide();
+	jQuery.post("$!webPath/load_goods_gsp.htm",{"id":"$!obj.id","gsp":gsp},function(data){
+	   goods_inventory=data.count;
+	   store_price=data.price;
+	   jQuery("#goods_inventory").html(goods_inventory);
+	   jQuery("#store_price").html("¥"+store_price);
+	   jQuery("#rest").html("¥"+(goods_price-store_price));
+	  },"json");
+	}
+  }
+  </script>        
+#foreach($spec in $goodsViewTools.generic_spec("$!obj.id"))
+<dl class="choose_size"><dt>$!{spec.name}：</dt><dd>
+#foreach($gsp in $obj.goods_specs)
+#if($!{gsp.spec.id}==$!spec.id)
+<a href="javascript:void(0);" onclick="goods_spec_set(this);" spec="$!gsp.spec.id" gsp="$!gsp.id"><b>$!gsp.value<i></i></b></a>
+#end
+#end
+
+</dd></dl>
+#end
+<dl class="count_num">
+<dt>数量</dt>
+#if($!obj.group_buy==2)
+#foreach($gg_info in $obj.group_goods_list)
+#if($!gg_info.gg_goods.id==$!obj.id)
+#set($goods_inventory=$!{gg_info.gg_count}) 
+#end                  
+#end
+#else
+#set($goods_inventory="$!{obj.goods_inventory}")
+#end 
+<dd><span class="count_cut"><a id="count_cut" count_type="cut" href="javascript:void(0);"></a></span>
+  <input name="goods_count" id="goods_count" value="1" type="text" class="count_txt"> 
+<span  class="count_add"><a id="count_add" count_type="add" href="javascript:void(0);"></a></span>
+#if($!group==1)团购剩余#else<em class="count_broad">库存#end :<b class="count_b" id="goods_inventory">$!{goods_inventory}</b>件</em></dd>
+</dl>
+    </li>
+    <li class="details_buy_go">
+    <a href="javascript:void(0);" onClick="buy_goods()" class="buy_btn">立即购买</a>
+    <a href="javascript:void(0);" onclick="add_cart();" class="add_car_btn">加入购物车</a></li>
+  </ul>
+  <div class="center_box" id="error_goods_inventory" style="display:none"><span class="count_none"></span></div>
+</div>
+
+<div class="details_mid">
+  <p><span>总销量：$!{obj.goods_salenum}件</span><span>所在地：$!obj.goods_store.area.parent.areaName</span></p>
+</div>
+<div class="details_tab">
+  <div class=" details_tab_box">
+    <ul class="details_tab_ul">
+      <li class="this" detail_css="details_content"><b>宝贝详情</b></li>
+      <li detail_css="pro_parameters"><b>产品参数</b></li>
+      <li detail_css="details_mes"><b>评价<i>($!obj.evas.size())</i></b></li>
+      <li detail_css="relevant_product"><b>推荐商品</b></li>
+    </ul>
+    <div class="details_content">
+    $!obj.goods_details
+    </div>
+    <script>
+	jQuery(document).ready(function(){
+       var data='$!obj.goods_property';
+       var properties=eval("("+data+")");
+       jQuery.each(properties,function(index,item){
+          jQuery(".pro_parameters ul").append("<li><span>"+item.name+"</span><b>"+item.val+"</b></li>");
+       });
+	   //
+	   jQuery(".details_tab_ul>li").click(function(){
+	       jQuery(".details_tab_ul>li").removeClass("this");
+		   jQuery(this).addClass("this");
+		   var detail_css=jQuery(this).attr("detail_css");
+		   jQuery(".details_content").hide();
+		   jQuery(".pro_parameters").hide();
+		   jQuery(".details_mes").hide();
+		   jQuery(".relevant_product").hide();
+		   jQuery("."+detail_css).show();
+	   }).mouseover(function(){
+	       jQuery(this).css({"cursor":"pointer"});
+	   });
+     });
+	</script>
+    <div class="pro_parameters" style="display:none;">
+      <ul>
+      </ul>
+    </div>
+    <div class="details_mes" style="display:none;">
+      <h2>买家评论</h2>
+      #foreach($eva in $obj.evas)
+      <dl class="mes_dl">
+          #if($!eva.evaluate_user.photo)
+          #set($img="$!imageWebServer/$!eva.evaluate_user.photo.path/$!eva.evaluate_user.photo.name")
+          #else 
+          #set($img="$!imageWebServer/$!config.memberIcon.path/$!config.memberIcon.name")
+          #end 
+        <dt><img src="$!img" width="50" height="50"></dt>
+        <dd>
+          <h3>$!{eva.evaluate_user.userName}<i><img src="$!webPath/recources/style/weixin/default/images/grade_1.gif" width="16" height="16"></i></h3>
+          <p>#if(!$!{eva.evaluate_info})$!{eva.evaluate_info}#else 这家伙很懒，什么都没说 #end</p>
+        <span>$!CommUtil.formatShortDate($!eva.addTime) $!eva.goods_spec</span></dd>
+      </dl>
+      #end
+    </div>
+    <div class="relevant_product" style="display:none;">
+     #foreach($goods in $recommend_goods_list)
+      <ul>
+        #if($!goods.goods_main_photo)              
+          #set($img="$!imageWebServer/$!{goods.goods_main_photo.path}/$!{goods.goods_main_photo.name}_small.$!{goods.goods_main_photo.ext}")
+        #else
+          #set($img="$!imageWebServer/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+        #end
+        <li><a href="$!webPath/weixin/goods.htm?goods_id=$!goods.id"><img src="$!img" ></a></li>
+        <li class="relevant_name"><a href="$!webPath/weixin/goods.htm?goods_id=$!goods.id">$!goods.goods_name</a></li>
+        <li class="relevant_price">¥$!{goods.store_price}<del>¥$!{goods.goods_price}</del></li>
+        <li class="relevant_buy">已售出：$!{goods.goods_salenum}笔</li>
+      </ul>
+     #end
+    </div>
+  </div>
+</div>
+  $!httpInclude.include("/weixin/footer.htm")
+  </div>
+  $!httpInclude.include("/weixin/nav_bottom.htm")
+</body>
+</html>

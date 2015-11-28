@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微信商城 - 系统提示</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link href="$!webPath/resources/style/weixin/default/css/phone.css" rel="stylesheet" type="text/css" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+</head>
+<body style="background:#ddd">
+<hgroup>
+  <h3 class="goods_car"><a href="javascript:history.go(-1);"><em></em></a><span><b>系统提示</b></span></h3>
+</hgroup>
+<div class="main">
+  <div class="index" style="height:300px;">
+    <div style="height:280px;border:1px solid #CCCCCC; background:#FFF;overflow:hidden; margin-left:auto; margin-right:auto; margin-top:10px; width:280px">
+      <div style="font-size:16px; color:#666666;margin-top:100px;">
+      <span style="text-align:center; display:block; width:100%;">
+      <img src="$!webPath/resources/style/common/images/icon/succeed.png" />
+      </span>
+      <span style=" padding-top:10px; line-height:30px; text-align:center; display:block; width:100%;">$!{op_title}！</span>
+      </div>
+    </div>
+  </div>
+<script>
+	  var count=3;
+	  window.setInterval(go,1000);
+	  function go(){
+	    count--;
+	    if(count==0) window.location.href="$!url";
+	  }
+	</script>
+</div>
+$!httpInclude.include("/weixin/nav_bottom.htm")
+</body>
+</html>

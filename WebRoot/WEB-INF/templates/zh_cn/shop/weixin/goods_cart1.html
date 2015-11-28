@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>微信商城 - 我的购物车</title>
+<link href="$!webPath/resources/style/weixin/default/css/phone.css" rel="stylesheet" type="text/css" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+<script>
+jQuery(document).ready(function() {
+  jQuery("input[id^=goods_count_]").keyup(function(){
+  	var cart_id=jQuery(this).attr("cart_id");
+	var count=jQuery("#goods_count_"+cart_id).val().replace(/\D/g,'');
+	if(count==""){
+       count=1;
+	}
+	var store_id=jQuery(this).attr("store_id");
+	if(count>0){
+	  goods_count_adjust(cart_id,store_id,count);
+	}	
+  });
+  
+  jQuery("a[id^=count_adjust_]").click(function(){
+	var count_type= jQuery(this).attr("count_type");
+	var goods_count=jQuery(this).parent().parent().find("input").val();
+	var cart_id = jQuery(this).parent().parent().find("input").attr("cart_id");
+	var store_id = jQuery(this).parent().parent().find("input").attr("store_id");
+	if(count_type=='cut'){
+		if(goods_count>=1){
+		goods_count = goods_count-1;
+		}	
+	}
+	else{
+	goods_count = goods_count-0+1;
+	}
+	if(goods_count>0){
+	  goods_count_adjust(cart_id,store_id,goods_count);
+	}	
+	});
+  
+  
+});
+//
+  function goods_count_adjust(cart_id,store_id,count){
+   	  jQuery.post("$!webPath/goods_count_adjust.htm",{"cart_id":cart_id,"store_id":store_id,"count":count},function(data){
+		 if(data.error=="100"){																										
+	       jQuery("#goods_count_"+cart_id).val(count);
+		   jQuery("#goods_count_"+cart_id).attr("goods_count",count)
+		   jQuery("#goods_total_price_"+cart_id).html("¥"+data.goods_total_price);
+		   jQuery("#total_price_"+store_id).html(data.sc_total_price);
+		   jQuery("#top_total_price_"+store_id).html(data.sc_total_price);
+		 }
+		 if(data.error=="200"){
+		     jQuery("#error_goods_inventory").show().find("span").html("库存不足，请重新选择数量！").parent().fadeOut(2000);
+		   jQuery("#goods_count_"+cart_id).val(jQuery("#goods_count_"+cart_id).attr("goods_count"));
+		 }
+		 if(data.error=="300"){
+		  jQuery("#error_goods_inventory").show().find("span").html("团购库存不足，请重新选择数量！").parent().fadeOut(2000);	 
+		   jQuery("#goods_count_"+cart_id).val(jQuery("#goods_count_"+cart_id).attr("goods_count"));
+		 }
+	   },"json");
+  }
+//
+#if($!user)
+function save_goods(obj_id){
+    #if($!user.id==$!obj.goods_store.user.id)
+	  jQuery("#error_goods_inventory").show().find("span").html("不能收藏自己的商品！").parent().fadeOut(2000);
+	#else
+	  jQuery.post("$!webPath/add_goods_favorite.htm",{"id":obj_id},function(data){
+		 if(data==0){
+			 jQuery("#error_goods_inventory").show().find("span").html("商品收藏成功！").parent().fadeOut(2000);
+		 }
+		 if(data==1){
+		 jQuery("#error_goods_inventory").show().find("span").html("已经收藏该商品！").parent().fadeOut(3000);
+		 }
+	  },"text");
+	#end
+	};
+#else	
+function save_goods(obj_id){
+	window.location.href="$!webPath/weixin/login.htm"
+	}
+#end
+//
+  function confirm_cart(sc_id){
+    jQuery("#cart_"+sc_id).hide();
+	jQuery("#cart_"+sc_id).attr("status","submit");
+	if(jQuery("form[id^=cart_][status=no_submit]").length==0){
+	   jQuery("#cart_"+sc_id).attr("target","_self");
+	}
+	jQuery("#cart_"+sc_id).submit();
+  }
+//  
+function cart_remove(id,store_id,goods_id,sc_id){
+var cart_size =	jQuery("div.nav_width ul li[op='cart']").find("em").html();
+   jQuery.post("$!store_second_url/weixin/remove_goods_cart.htm",{"id":id,"store_id":store_id},function(data){
+   jQuery("#goods_car_list_"+goods_id).remove();
+   jQuery("#list_btn_"+goods_id).remove();
+   jQuery("div.nav_width ul li[op='cart']").find("em").html(data.count);
+	if(store_id!=""){
+	  jQuery("#total_price_"+store_id).html(data.sc_total_price);
+	 }
+	if(jQuery("dl[order_id='"+sc_id+"']").length==0){
+		jQuery("#order_title_"+sc_id).remove();
+		jQuery("#total_price_"+sc_id).remove();
+	}
+	if(jQuery("hgroup[id^=order_title_]").length==0){
+		jQuery("#car_nogoods").show();
+		}
+ },"json");
+}   
+</script>
+</head>
+<body class="login_bg">
+<div class="page_bottom2">
+<hgroup>
+  <h3 class="goods_car"><a href="javascript:history.go(-1);"><em></em></a><span><b>我的购物车</b></span></h3>
+</hgroup> 
+  #foreach($sc in $cart)
+  <form status="no_submit" method="post" name="cart_$!{sc.store.id}" id="cart_$!{sc.store.id}" action="$!webPath/weixin/goods_cart2.htm">
+    <hgroup id="order_title_$!{sc.id}" class="order_hgroup_h4">
+      <h4 class="shop_name"><span><i>店铺名称：</i><strong>$!sc.store.store_name</strong> </span></h4>
+    </hgroup>
+    <div class="goods_car_box_p">#foreach($obj in $sc.gcs)
+      #if($!obj.goods.goods_main_photo)               
+      #set($img="$!imageWebServer/$!{obj.goods.goods_main_photo.path}/$!{obj.goods.goods_main_photo.name}_small.$!{obj.goods.goods_main_photo.ext}")
+      #else
+      #set($img="$!imageWebServer/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+      #end
+      <aside class="goods_car_aside">
+        <dl class="goods_car_list" order_id="$!sc.id" id="goods_car_list_$!{obj.goods.id}">
+          <dt><a href="$!webPath/weixin/goods.htm?goods_id=$!{obj.goods.id}"><img src="$!img" width="90" height="90"></a></dt>
+          <dd>
+            <section>
+              <h4>$!CommUtil.substring("$!obj.goods.goods_name",25)
+                #if($!{obj.goods.group_buy}==2) <span style="color:#F00">(团购)</span> #end
+                #if($!{obj.goods.bargain_status}==2) <span style="color:#F00">(特价)</span> #end </h4>
+              #foreach($gsp in $obj.gsps)
+              #if($!gsp.spec)
+              <p>$!gsp.spec.name: $!gsp.value</p>
+              #end
+              #end 
+              #set($total_price=$!obj.count * $!obj.price) <span><strong id="goods_total_price_$!{obj.id}">¥$!total_price</strong> 
+
+              </span> </section>
+          </dd>
+        </dl>
+        <div class="list_btn" id="list_btn_$!{obj.goods.id}"> <span class="list_total"> 
+        <i class="count_cut"><a id="count_adjust_cut_$!{obj.goods.id}" count_type="cut" href="javascript:void(0);"></a></i>
+          <input name="goods_count_$!{obj.id}" id="goods_count_$!{obj.id}" type="text"  value="$!obj.count" cart_id="$!obj.id" store_id="$!sc.store.id" goods_count="$!obj.count" class="count_txt">
+          <i  class="count_add"><a id="count_adjust_add_$!{obj.goods.id}" count_type="add" href="javascript:void(0);"></a></i>
+          </span><span class="go_collect"><a href="javascript:void(0);" onClick="save_goods('$!obj.goods.id')">收藏</a></span> <span class="go_del"><a href="javascript:void(0);" onClick="cart_remove('$!obj.id','$!sc.store.id','$!obj.goods.id','$!sc.id');">删除</a></span> </div>
+      </aside>
+      #end </div>
+    <div class="car_operate" id="total_price_$!{sc.id}">
+      <section class="car_operate_top">订单总金额：¥<b id="total_price_$!{sc.store.id}" style="font-size:20px">$!{sc.total_price}</b>(不含运费)</section>
+      <section class="car_operate_bottom">
+        <button class="go_count_btn" type="button" onClick="confirm_cart('$!sc.store.id');">去结算</button>
+      </section>
+    </div>
+    <input name="store_id" type="hidden" id="store_id" value="$!sc.store.id" />
+  </form>
+  #end
+   <div class="center_box" id="error_goods_inventory" style="display:none"><span class="count_none"></span></div>
+   <span id="car_nogoods" #if($!cart.size()>0) style="display:none;"#end>
+  <div class="car_image_none">
+    <p>您的购物车还是空的，快去选购吧</p>
+  </div>
+  <div class="car_image_btn"><span><a href="$!webPath/weixin/buyer/order.htm">查看自己的订单>></a></span></div>
+  </span>
+ </div>
+$!httpInclude.include("/weixin/nav_bottom.htm?op=cart")
+</body>
+</html>

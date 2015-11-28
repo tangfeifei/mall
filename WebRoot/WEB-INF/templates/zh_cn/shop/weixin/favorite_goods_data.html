@@ -1,0 +1,13 @@
+#foreach($obj in $objs)
+#if($!obj.goods.goods_main_photo)
+#set($img="$!webPath/$!{obj.goods.goods_main_photo.path}/$!{obj.goods.goods_main_photo.name}_small.$!{obj.goods.goods_main_photo.ext}")
+#else
+#set($img="$!webPath/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+#end
+<dl class="goodsdl">
+<dt><a href="$!webPath/weixin/goods.htm?goods_id=$!{obj.goods.id}"> <span class="goodsimg"><img src="$!img" width="50" height="50" /></span>
+<h3>$!obj.goods.goods_name</h3>
+</a></dt>
+<dd><em>收藏时间：$!CommUtil.formatLongDate($!obj.addTime)</em><i><strong>$!{config.currency_code}$!{obj.goods.store_price}</strong><span class="del"><a href="javascript:void(0);" onclick="if(confirm('确定删除收藏?'))window.location.href='$!webPath/buyer/favorite_del.htm?mulitId=$!obj.id&currentPage=$!currentPage&type=0'" class="blue">删除</a></span></i></dd>
+</dl>
+#end

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>微信商城 - 我的优惠券</title>
+<link href="$!webPath/resources/style/weixin/default/css/phone.css" rel="stylesheet" type="text/css" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+<script>
+jQuery(document).ready(function() {
+   var beginCount =6;
+  jQuery("#loading_more").click(function(){
+	  jQuery.post("$!webPath/weixin/buyer/coupon_ajax.htm",
+		  {
+		  "beginCount":beginCount	  
+		  },
+		  function(data){
+			  if(data){
+				  jQuery("#opertable").append(data)
+				  beginCount = beginCount +6;
+				   }else{
+					  jQuery(".index_load").hide();
+					 jQuery("#no_more").show();
+				   }
+			  },
+		  "text");	  
+		  });  	  
+});
+</script>
+</head>
+<body>
+<div class="page_bottom">
+<hgroup>
+  <h3 class="goods_car"><a href="javascript:history.go(-1);"><em></em></a><span><b>我的优惠券</b></span></h3>
+</hgroup> 
+#foreach($obj in $objs)
+<table width="1009" border="0" cellspacing="0" cellpadding="0" id="opertable" class="opertable" >
+ 
+  <tr >
+    <td colspan="2" class="opertable_title">优惠券编号:$!obj.coupon_sn （#if($!obj.status==0)未使用#else 已使用#end）</td>
+  </tr>
+  <tr >
+    <td class="opertable_td">优惠卷金额</td>
+    <td class="opertable_td">可用订单金额</td>
+  </tr>
+  <tr>
+    <td class="opertable_td">$!{config.currency_code}$!obj.coupon.coupon_amount</td>
+    <td  class="opertable_td">$!{config.currency_code}$!obj.coupon.coupon_order_amount</td>
+  </tr>
+  <tr>
+    <td colspan="2"  class="opertable_td">有效时间：$!obj.coupon.coupon_begin_time ~ $!obj.coupon.coupon_end_time</td>
+  </tr>
+
+</table>  #end
+#if($!objs.size()>0)
+<div class="index_load"><a href="javascript:void(0);" id="loading_more">加载更多</a></div>
+<div class="index_load" id="no_more" style="display: none"><a href="javascript:void(0);" style="color:#F00">没有更多数据了</a></div>
+#else <span class="goods_none"><img src="$!webPath/resources/style/system/front/default/images/sigh.jpg" width="80"  height="62"/>
+<p>对不起，没有相应数据！</p>
+</span> #end
+</div>
+$!httpInclude.include("/weixin/nav_bottom.htm?op=account")
+</body>

@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>合作伙伴账号登录 - $!config.title - Powered by LakeCloudl</title>
+<meta name="keywords" content="$!config.keywords" />
+<meta name="description" content="$!config.description" />
+
+<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+<link href="$!webPath/resources/style/system/front/default/css/goods.css" type="text/css" rel="stylesheet" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+
+<script src="$!webPath/resources/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+
+<script>
+jQuery(document).ready(function(){
+   jQuery(".bind_info_tab li").css("cursor","pointer").click(function(){
+	  jQuery(".bind_info_tab li").removeClass("this");
+	  jQuery(this).addClass("this");
+	  var tab_id=jQuery(this).attr("tab");
+	  jQuery(".bind_tabone").hide();
+	  jQuery("#"+tab_id).fadeIn('normal');
+	});
+  
+   jQuery("#theForm1").validate({
+	   rules:{
+		   userName:{
+		     required:true
+		     },
+		   password:{
+		     required:true
+		     }
+		   },
+	    messages:{
+			userName:{required:"用户名不能为空"},
+			password:{required:"密码不能为空"}
+			}	   
+	});
+	
+});
+
+
+	  //执行代码查询
+	  function mobileValidateCode(e){
+                 	function caller(v){
+                 		var timerMax = 60;//60秒内不能提交
+                 		function tick(){
+                 			timerMax--;
+	                			if(timerMax>0){
+	                				window.setTimeout(tick ,1000);
+	                				$(e).html(timerMax+"秒后重试");
+	                			}else{
+	                				$(e).removeAttr("disabled");
+	                				$(e).html("获取验证码");
+	                			}
+                 		}
+                 		var timer = window.setTimeout(tick, 1000);
+                 	}
+                 	
+                 	var mobile = $("#mobileNo").val().replace(/^(?:\s*)(.*?)(?:\s*)$/,"$1");
+                 	
+                 	if(!mobile||mobile==""){
+                 		$(e).attr("title","	请输入手机号码！");
+	                 			 $(e).poshytip({
+									className: 'tip-yellowsimple',
+									showOn: 'focus',
+									alignTo: 'target',
+									alignX: 'left',
+									alignY: 'center',
+									offsetX: 5,
+									showTimeout: 100
+								});
+                 		return ;
+                 	}
+                 	
+                 	 	$(e).attr("disabled" , true);
+                 		caller($(e));
+	                 	jQuery.ajax({
+	                 		url:"$!webPath/m/mobile_notice.htm" ,
+	                 		async:true ,
+	                 		    cache:false,
+	                 		
+	                 		data:{mobileNo:mobile},
+	                 		dataType:"json",
+	                 		success:function(data){
+	                 			 if(data.success=='false'){
+	                 			 	$(e).attr("title",data.message);
+	                 			 }else{
+	                 			 	 $(e).attr("title","短信发送成功，请注意查收！");
+	                 			 }
+	                 			 $(e).poshytip({
+									className: 'tip-yellowsimple',
+									showOn: 'focus',
+									alignTo: 'target',
+									alignX: 'left',
+									alignY: 'center',
+									offsetX: 5,
+									showTimeout: 100
+								});
+	                 		},
+	                 		failure:function(){
+	                 			 $(e).attr("title","短信发送失败！");
+	                 			 $(e).poshytip({
+									className: 'tip-yellowsimple',
+									showOn: 'focus',
+									alignTo: 'target',
+									alignX: 'left',
+									alignY: 'center',
+									offsetX: 5,
+									showTimeout: 100
+								});
+	                 		}
+	                 	})
+	                
+                 }
+</script>
+</head>
+<body>
+  $!httpInclude.include("/top.htm")
+<div class="main">
+
+  $!httpInclude.include("/head.htm")
+  $!httpInclude.include("/nav.htm")
+ 
+  <div class="index2">
+    <div class="binding_user">
+      <div class="binding_left">
+        <div class="bind_ph">
+          <div class="bind_bg">
+            <div class="bind_heph"><i class="qqph"><img src="$!imageWebServer/resources/style/system/front/default/images/sinaph.jpg" width="114" height="114" /></i><span class="photo_box"></span></div>
+            <div class="bind_name">手机用户</div>
+          </div>
+        </div>
+      </div>
+      <div class="binding_right">
+        <div class="bind_info">
+          <div class="bind_info_tab">
+            <ul>
+              <li tab="user_bind">输入手机号码绑定手机信息</li>
+            </ul>
+          </div>
+          <div class="bind_tab_box">
+            <form action="$!webPath/m/mobile_bind.htm" method="post" name="theForm1" id="theForm1">
+            <table>
+            	<tr>
+                  <td align="right" valign="top"><b>手机号码：</b></td>
+                  <td>
+                    <input id="mobileNo" name="mobileNo" type="text"   />
+                     <a style="white-space:nowrap" href="javascript:void(0);"  onclick="mobileValidateCode(this);" width=80 class="usenosee">获取验证码</a>
+ 					 <span class="login_error_sp" style="display:none"></span>
+                 </td>
+                </tr>
+                <tr>
+                  <td align="right" valign="top"><b>验证码：</b></td>
+                  <td>
+                    <input name="MOBILE_VALIDATE_CODE" type="text" id="code"  autocomplete="off" style="text-transform:uppercase;" class="usecode" />
+                 			 <span class="login_error_sp" style="display:none"></span>
+                  </td>
+                </tr>
+                 <tr>
+                  <td>&nbsp;</td>
+                  <td><span class="bind_ok">
+                    <input name="" type="submit" value="确认提交" style="cursor:pointer;" />
+                    </span></td>
+                </tr>
+                </table>
+           </form>
+            
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  $!httpInclude.include("/footer.htm") </div>
+</body>
+</html>

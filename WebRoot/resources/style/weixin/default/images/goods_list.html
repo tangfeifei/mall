@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no,target-densitydpi=device-dpi;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>微信商城 - 商品列表</title>
+<link href="$!webPath/resources/style/weixin/default/css/phone.css" rel="stylesheet" type="text/css" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+<script>
+jQuery(document).ready(function() {
+ 	   var begin_count =4;
+  jQuery("#loading_more").click(function(){
+	  jQuery.post("$!webPath$!ajaxUrl",
+	  {
+	  "begin_count":begin_count
+	  },
+	  function(data){
+		  if(data){
+			  jQuery("div.goods_list").append(data)
+			  begin_count = begin_count +4;
+			  }
+		  },
+	  "text");	  
+	  });
+});
+</script>
+</head>
+<body>
+$!httpInclude.include("/weixin/nav.htm")
+<div class="search">
+  <section>
+    <input name="" type="search" class="search_txt">
+    <button class="search_btn">搜索</button>
+  </section>
+</div>
+<div class="sort"> <span class="sort_sp"><a href=""><b>人气<s class="sort_sp_up"></s></b></a></span> <span class="sort_sp"><a href=""><b>销量<s class="sort_sp_down"></s></b></a></span> <span class="sort_sp"><a href=""><b>价格<s class="sort_sp_down"></s></b></a></span> <span class="sort_sp"><a href=""><b>信誉<s class="sort_sp_down"></s></b></a></span> </div>
+<div class="goods_list">
+  #foreach($goods in $objs)
+  <dl>
+   #if($!goods.goods_main_photo)                        #set($img="$!imageWebServer/$!{goods.goods_main_photo.path}/$!{goods.goods_main_photo.name}_small.$!{goods.goods_main_photo.ext}")
+        #else
+          #set($img="$!imageWebServer/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+        #end
+    <dt><a href="$!webPath/weixin/goods.htm?goods_id=$!goods.id"><img src="$!img" /></a></dt>
+    <dd>
+      <ul>
+        <li class="goods_name"><a href="$!webPath/weixin/goods.htm?goods_id=$!goods.id">$!goods.goods_name</a></li>
+        <li class="goods_price"><b>¥$!{goods.store_price}</b><del>¥$!{goods.goods_price}</del></li>
+        <li class="goods_address"><span>浙江</span>销量：10</li>
+      </ul>
+    </dd>
+  </dl>
+  #end
+</div>
+ <div class="index_load"><a href="javascript:void(0);" id="loading_more">加载更多</a></div>
+</body>
+</html>

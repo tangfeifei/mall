@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>品牌列表</title>
+<link href="$!webPath/resources/style/weixin/default/css/platform.css" rel="stylesheet" type="text/css" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+<script>
+jQuery(document).ready(function(e) {
+    jQuery(".main .brand_more").toggle(function(){
+		jQuery(this).parent().find("li[status='none']").show().attr("status","block");
+		jQuery(this).find("img").attr("src","$!webPath/resources/style/weixin/default/images/brand_up.png");
+		},function(){
+		jQuery(this).parent().find("li[status='block']").hide().attr("status","none");	
+		jQuery(this).find("img").attr("src","$!webPath/resources/style/weixin/default/images/brand_more.png");
+		});
+});
+</script>
+</head>
+
+<body>
+<header>
+  <div class="main">
+#set($logo="$!webPath/resources/style/weixin/default/images/logo.png")
+#if($!config.store_weixin_logo)
+#set($logo="$!webPath/$!config.store_weixin_logo.path/$!config.store_weixin_logo.name")
+#end  
+    <div class="mall_back"><a href="javascript:history.go(-1);"><img src="$!webPath/resources/style/weixin/default/images/back.png"></a></div>
+    <div class="logo" style="padding-left:90px"><img src="$!logo" width="83" height="23" /></div>
+  </div>
+</header>
+#foreach($gbc in $gbcs)
+  #if($!gbc.brands.size()>0)
+  <div class="brand_width">
+  <div class="main">
+      <h1><span class="fl">$!gbc.name</span><span class="fr"><a href="$!webPath/weixin/platform/search_goods_list.htm?gbc_id=$!gbc.id"><img src="$!webPath/resources/style/weixin/default/images/more.png"></a></span></h1>
+    </div>
+</div>
+  <div class="main">
+  <ul class="brand_list">
+      #foreach($gb in $gbc.brands)
+      <li #if($!velocityCount>8) status="none" style="display:none" #end><a href="$!webPath/weixin/platform/search_goods_list.htm?gb_id=$!gb.id">$!gb.name</a></li>
+      #end
+    </ul>
+  <div class="brand_more"><a href="javascript:void(0);"><img  src="$!webPath/resources/style/weixin/default/images/brand_more.png"></a></div>
+</div>
+#end
+#end
+<div class="main"> $!httpInclude.include("/weixin/platform/footer.htm") </div>
+</div>
+$!httpInclude.include("/weixin/platform/nav_bottom.htm")
+</body>
+</html>

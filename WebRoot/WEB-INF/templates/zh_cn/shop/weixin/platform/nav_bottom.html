@@ -1,0 +1,27 @@
+<script>
+jQuery(document).ready(function(e) {
+    #if($!op)
+	jQuery("div.foot_nav").find('ul li').removeClass("this");
+	jQuery("div.foot_nav").find('ul li[op="$!op"]').addClass("this");
+	#end
+});
+</script>
+<script type="text/javascript">
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+WeixinJSBridge.call('hideToolbar');
+});
+</script>
+<div class="foot_nav">
+    	<div class="main">
+        #set($img="$!webPath/resources/style/weixin/default/images/logo.png")
+        #if($!config.store_weixin_logo)
+        #set($img="$!webPath/$!config.store_weixin_logo.path/$!config.store_weixin_logo.name")
+        #end
+        	<div class="nav_foot_logo"><img src="$!img" width="83" height="23"  /></div>
+        	<ul>
+            	<li op="index"><a href="$!webPath/weixin/platform/index.htm"><span class="home"></span></a></li>
+                <li op="activity"><a href="$!webPath/weixin/platform/activity_goods_list.htm"><span class="glass"></span></a></li>
+                <li op="classes"><a href="$!webPath/weixin/platform/classes_first.htm"><span class="list"></span></a></li>
+            </ul>
+        </div>
+    </div>

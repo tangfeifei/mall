@@ -1,0 +1,16 @@
+#foreach($obj in $objs)
+<tr >
+<td colspan="2" class="opertable_title">优惠券编号:$!obj.coupon_sn （#if($!obj.status==0)未使用#else 已使用#end）</td>
+</tr>
+<tr >
+<td class="opertable_td">优惠卷金额</td>
+<td class="opertable_td">可用订单金额</td>
+</tr>
+<tr>
+<td class="opertable_td">$!{config.currency_code}$!obj.coupon.coupon_amount</td>
+<td  class="opertable_td">$!{config.currency_code}$!obj.coupon.coupon_order_amount</td>
+</tr>
+<tr>
+<td colspan="2"  class="opertable_td">有效时间：$!obj.coupon.coupon_begin_time ~ $!obj.coupon.coupon_end_time</td>
+</tr>
+#end

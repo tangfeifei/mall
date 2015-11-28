@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>微信商城 - 商品列表</title>
+<link href="$!webPath/resources/style/weixin/default/css/phone.css" rel="stylesheet" type="text/css" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+<script>
+jQuery(document).ready(function() {
+   var begin_count =6;
+   jQuery("#loading_more").click(function(){
+	 var queryType = jQuery("#queryType").val(); 
+	  jQuery.post("$!webPath/weixin/goods_list_ajax.htm",
+		  {
+		  "begin_count":begin_count,
+		  "queryType":queryType 
+		  },
+		  function(data){
+			  if(data){
+				  jQuery("div.goods_list").append(data)
+				  begin_count = begin_count +6;
+			  }else{
+				 	 jQuery(".index_load").hide();
+					 jQuery("#no_more").show();
+				  }
+				  
+			  },
+		  "text");	  
+		  });
+	jQuery("div.sort .sort_sp").find("a").click(function(){
+	   var queryType =	jQuery(this).attr("queryType");
+	   jQuery("#queryType").val(queryType);
+	   var 	ugc_id = jQuery("#ugc_id").val();
+	   window.location.href="$!webPath/weixin/goods_list.htm?queryType="+queryType
+		});  	  
+});
+</script>
+</head>
+<body>
+<div class="page_bottom">
+<hgroup>
+  <h3 class="goods_car"><a href="javascript:history.go(-1);"><em></em></a><span><b>商品列表</b></span></h3>
+</hgroup>
+<div class="sort"> 
+<span class="sort_sp"><a href="javascript:void(0);" queryType="goods_collect"><b>人气<s class="sort_sp_up"></s></b></a></span> <span class="sort_sp"><a href="javascript:void(0);" queryType="goods_salenum"><b>销量<s class="sort_sp_down"></s></b></a></span> <span class="sort_sp"><a href="javascript:void(0);" queryType="store_price"><b>价格<s class="sort_sp_down"></s></b></a></span> <span class="sort_sp"><a href="javascript:void(0);" queryType="store_credit"><b>信誉<s class="sort_sp_down"></s></b></a></span> 
+</div>
+<input id="queryType" name="queryType" type="hidden" value="$!queryType"/>
+<input id="ugc_id" name="ugc_id" type="hidden" value="$!ugc_id"/>
+<div class="goods_list"> #foreach($goods in $objs)
+  <dl>
+    #if($!goods.goods_main_photo)                        #set($img="$!imageWebServer/$!{goods.goods_main_photo.path}/$!{goods.goods_main_photo.name}_small.$!{goods.goods_main_photo.ext}")
+    #else
+    #set($img="$!imageWebServer/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+    #end
+    <dt><a href="$!webPath/weixin/goods.htm?goods_id=$!goods.id"><img src="$!img" /></a></dt>
+    <dd>
+      <ul>
+        <li class="goods_name"><a href="$!webPath/weixin/goods.htm?goods_id=$!goods.id">$!goods.goods_name</a></li>
+        <li class="goods_price"><b>¥$!{goods.store_price}</b><del>¥$!{goods.goods_price}</del></li>
+        <li class="goods_address"><span>$!goods.goods_store.area.parent.parent.areaName</span>销量：$!{goods.goods_salenum}</li>
+      </ul>
+    </dd>
+  </dl>
+  #end </div>
+#if($!objs.size()>0)
+<div class="index_load"><a href="javascript:void(0);" id="loading_more">加载更多</a></div>
+<div class="index_load" id="no_more" style="display:none"><a href="javascript:void(0);" style="color:#F00">没有更多数据了</a></div>
+#else
+<span class="goods_none"><img src="$!webPath/resources/style/system/front/default/images/sigh.jpg" width="80"  height="62"/><p>对不起，没有相应数据！</p></span>
+#end
+</div>
+$!httpInclude.include("/weixin/nav_bottom.htm")
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/>
+<link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+<script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+<script>
+jQuery(document).ready(function(){
+  jQuery('#beginTime').datepicker({
+	  dateFormat:"yy-mm-dd",
+	  changeMonth: true,
+	  changeYear: true
+  });
+  jQuery('#endTime').datepicker({
+	  dateFormat:"yy-mm-dd",
+	  changeMonth: true,
+	  changeYear: true
+  });
+  //
+});
+</script>
+</head>
+<body>
+<div class="cont">
+  <h1 class="seth1"><span class="buyer_p_box">店铺保证金</span></h1>
+  <div class="settab"> <span class="tab-one"></span> <span class="tabs"> <a href="$!webPath/admin/deposit_list.htm">保证金缴纳信息</a> | <a href="$!webPath/admin/deposit_log_list.htm" class="this">保证金详细日志</a> | <a href="$!webPath/admin/deposit_adjust.htm">调整保证金</a> </span> <span class="tab-two"></span> </div>
+  <div id="record">
+   <form method="post" action="$!webPath/admin/deposit_log_list.htm">
+    <div class="allpro_search">
+      <ul>
+        <li> <span>缴费时间</span><span class="allpro size8">
+          <input name="beginTime" type="text" id="beginTime" />
+          </span>—<span class="allpro size8">
+          <input name="endTime" type="text" id="endTime" />
+          </span> <span>店铺名称</span><span class="allpro size8">
+          <input name="store_name" type="text" id="store_name" />
+          </span><span class="btn_search">
+          <input name="" type="submit"  value="搜索" style="cursor:pointer;"/>
+          </span> </li>
+      </ul>
+    </div>
+    </form>
+    <form method="post" id="ListForm" action="$!webPath/admin/deposit_log_list.htm">
+    <div class="shop_table">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr style="background: #if($!config.websiteCss=='blue') #2A7AD2 #end 
+      #if($!config.websiteCss=='black')#333 #end; height:30px; color:#FFF">
+          <td width="10%" align="center">店铺名称</td>
+          <td width="8%" align="center">店铺等级</td>
+          <td width="8%" align="center">店主姓名</td>
+          <td width="8%" align="center">保证金金额</td>
+          <td width="8%" align="center">审核状态</td>
+          <td width="8%" align="center">类型</td>
+          <td width="10%" align="center">支付方式</td>
+          <td width="10%" align="center">开店日期</td>
+          <td width="10%" align="center">缴纳日期</td>
+          <td width="10%" align="center">操作时间</td>
+          <td width="10%" align="center">操作管理员</td>
+        </tr>
+        #foreach($obj in $objs)
+        <tr>
+          <td align="center">$!obj.dp_store_name</td>
+          <td align="center">$!obj.dp_grade_name</td>
+          <td align="center">$!obj.dp_store_ower</td>
+          <td align="center">$!{obj.dp_amount}元</td>
+           #if($!obj.dp_status==10)
+            #set($status="支付完成")
+          #end
+          #if($!obj.dp_status==-1)
+            #set($status="拒绝通过")
+          #end
+          #if($!obj.dp_status==0)
+            #set($status="未支付")
+          #end
+          #if($!obj.dp_status==5)
+            #set($status="待审核")
+          #end
+          <td align="center">$!status</td>
+          #if($!obj.dp_type==0)
+            #set($op_type="缴纳")
+          #end
+          #if($!obj.dp_type==1)
+            #set($op_type="扣除")
+          #end
+          #if($!obj.dp_type==2)
+            #set($op_type="增加")
+          #end
+          #if($!obj.dp_type==3)
+            #set($op_type="退还")
+          #end
+          <td align="center">$!op_type</td> 
+          <td align="center">$!obj.dp_payment</td>
+          <td align="center">$!CommUtil.formatLongDate($!obj.dp_store_open_time)</td>         
+          <td align="center">$!CommUtil.formatLongDate($!obj.addTime)</td>
+          <td align="center">$!CommUtil.formatLongDate($!obj.dp_op_time)</td>
+          <td align="center">$!obj.dp_op_user_name</td>
+        </tr>
+        #end
+      </table>
+    </div>
+      <div class="fenye">
+    <div class="fenye3">
+      <input name="store_name" type="hidden" id="store_name" value="$!store_name" />
+      <input name="endTime" type="hidden" id="endTime" value="$!endTime" />
+      <input name="beginTime" type="hidden" id="beginTime" value="$!beginTime" />
+<input name="currentPage" type="hidden" id="currentPage" value="$!currentPage" />
+      $!gotoPageFormHTML</div>
+  </div>
+  </form>
+  </div>
+</div>
+</body>
+</html>

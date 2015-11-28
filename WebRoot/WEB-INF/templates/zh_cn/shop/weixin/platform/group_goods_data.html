@@ -1,0 +1,17 @@
+#foreach($obj in $objs)
+#set($img="$!imageWebServer/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+#if($!obj.gg_img)
+#set($img="$!imageWebServer/$!obj.gg_img.path/$!obj.gg_img.name")
+#end
+<div class="group">
+<div class="group_fl"><a href="$!webPath/weixin/goods.htm?goods_id=$!obj.gg_goods.id"><img src="$!img"></a></div>
+<div class="group_fr">
+<ul>
+<li class="name"><a href="$!webPath/weixin/goods.htm?goods_id=$!obj.gg_goods.id">$!obj.gg_name</a></li>
+<li class="price_gp"><i></i><span><b>$!obj.gg_price</b><a href="$!webPath/weixin/goods.htm?goods_id=$!{obj.gg_goods.id}">去看看</a></span></li>
+#set($save="$!CommUtil.null2Double($!CommUtil.subtract($!obj.gg_goods.goods_price, $!obj.gg_price))")
+<li class="save"> <span><b>原价</b><i>$!obj.gg_goods.goods_price</i></span> <span><b>节省</b><em>$!save</em></span> <span class="br_none"><b>已售出</b><em>$!obj.gg_vir_count件</em></span> </li>
+</ul>
+</div>
+</div>
+#end

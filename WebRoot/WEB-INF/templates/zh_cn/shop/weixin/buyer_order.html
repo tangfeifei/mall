@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>微信商城 - 订单列表</title>
+<link href="$!webPath/resources/style/weixin/default/css/phone.css" rel="stylesheet" type="text/css" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+<script>
+jQuery(document).ready(function() {
+	var beginCount =6;
+   jQuery("#loading_more").click(function(){
+	  jQuery.post("$!webPath/weixin/buyer/order_ajax.htm",
+		  {
+		  "order_status":jQuery("#order_status").val(),
+		  "beginCount":beginCount 
+		  },
+		  function(data){
+			  if(data){
+				  jQuery("#span_order_list").append(data)
+				  beginCount = beginCount +6;
+				  }else{
+					 jQuery(".index_load").hide();
+					 jQuery("#no_more").show();
+					  }
+			  },
+		  "text");	  
+		  });	  
+});
+</script>
+</head>
+<body>
+<div class="page_bottom">
+<hgroup>
+  <h3 class="goods_car"><a href="javascript:history.go(-1);"><em></em></a><span><b>订单管理</b></span></h3>
+</hgroup>
+<hgroup> #set($orderStatus="全部")
+  #if($!order_status==10)
+  #set($orderStatus="待付款")
+  #end
+  #if($!order_status==20)
+  #set($orderStatus="待发货")
+  #end
+  #if($!order_status==30)
+  #set($orderStatus="待收货")
+  #end
+  #if($!order_status==40)
+  #set($orderStatus="待评价")
+  #end
+  <h5 class="hgroup_h5"><span>$!{orderStatus}订单</span></h5>
+</hgroup>
+<span id="span_order_list"> #foreach($obj in $objs)
+<hgroup class="order_hgroup_h4">
+  <h4 class="shop_name"> <span><i>店铺名称：</i><strong>$!{obj.store.store_name}</strong></span></h4>
+</hgroup>
+#foreach($gc in $obj.gcs)
+    #if($!obj.order_status==0)
+    #set($status="已取消")
+    #end
+    #if($!obj.order_status==10)
+    #set($status="待付款")
+    #end
+    #if($!obj.order_status==15)
+    #set($status="线下支付待审核")
+    #end
+    #if($!obj.order_status==16)
+    #set($status="货到付款待发货")
+    #end
+    #if($!obj.order_status==20)
+    #set($status="已付款")
+    #end
+    #if($!obj.order_status==30)
+    #set($status="已发货")        
+    #end                
+    #if($!obj.order_status==40)
+    #set($status="已收货")
+    #end
+    #if($!obj.order_status==45)
+    #set($status="买家申请退货")
+    #end
+    #if($!obj.order_status==46)
+    #set($status="退货中")
+    #end
+    #if($!obj.order_status==47)
+    #set($status="退货完成，已结束")
+    #end
+    #if($!obj.order_status==48)
+    #set($status="卖家拒绝退货")
+    #end
+    #if($!obj.order_status==49)
+    #set($status="退货失败")
+    #end
+    #if($!obj.order_status==50)
+    #set($status="已完成,已评价")                                              
+    #end
+    #if($!obj.order_status==60)
+    #set($status="已结束")                                              
+    #end
+    #if($!obj.order_status==65)
+    #set($status="已结束，不可评价")                                              
+    #end
+ #if($!gc.goods.goods_main_photo)                #set($img="$!webPath/$!{gc.goods.goods_main_photo.path}/$!{gc.goods.goods_main_photo.name}_small.$!{gc.goods.goods_main_photo.ext}")
+#else
+#set($img="$!webPath/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+#end
+<section class="waitingpay_list"> <a href="$!webPath/weixin/buyer/order_view.htm?id=$!{obj.id}">
+  <dl>
+    <dt><img src="$!img" width="100" height="100"> <i>$!{status}</i></dt>
+    <dd>
+      <h3>$!{gc.goods.goods_name}     
+        #if($!{gc.goods.group_buy}==2) <strong style="color:#F00">(团购)</strong> #end
+        #if($!{obj.goods.delivery_status}==2) <strong style="color:#F00">[买就送]</strong> #end
+        #if($!{gc.goods.bargain_status}==2) <strong style="color:#F00">(特价)</strong> #end
+        #if($!{gc.cart_type}=="combin") <strong style="color:#F00">【组合商品】</strong> #end</h3>
+      <p><strong>¥$!{gc.goods.store_price}</strong>共$!{gc.count}个宝贝</p>
+      <span> </span> </dd>
+  </dl>
+  </a> </section>
+#end
+<div class="order_totalprice"> <strong>#if($!obj.order_status==10) <a href="$!webPath/weixin/order_pay_view.htm?id=$!obj.id">
+  <button class="waitingpay_red_btn right">付款</button>
+  </a> #end
+  #if($!obj.order_status==30) <a href="$!webPath/weixin/buyer/order_view.htm?id=$!{obj.id}">
+  <button class="waitingpay_red_btn right">收货</button>
+  </a> #end      
+  #if($!obj.order_status>=40 && $!obj.order_status!=47 && $!obj.order_status!=50 && $!obj.order_status!=60 && $!obj.order_status!=65) <a href="$!webPath/weixin/buyer/order_evaluate.htm?id=$!{obj.id}">
+  <button class="waitingpay_red_btn right">评价</button>
+  </a> #end </strong> <span>订单总额：$!obj.totalPrice</span> </div>
+#end </span>
+<input id="order_status" name="order_status" value="$!order_status" type="hidden"/>
+#if($!objs.size()>0)
+<div class="index_load"><a href="javascript:void(0);" id="loading_more">加载更多</a></div>
+<div class="index_load" id="no_more" style="display: none"><a href="javascript:void(0);" style="color:#F00">没有更多数据了</a></div>
+#else <span class="goods_none"><img src="$!webPath/resources/style/system/front/default/images/sigh.jpg" width="80"  height="62"/>
+<p>对不起，没有相应数据！</p>
+</span> #end
+</div>
+$!httpInclude.include("/weixin/nav_bottom.htm?op=account")
+</body>
+</html>

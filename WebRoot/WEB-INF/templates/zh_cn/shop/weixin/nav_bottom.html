@@ -1,0 +1,34 @@
+<script>
+jQuery(document).ready(function(e) {
+    #if($!op)
+	jQuery("div.nav_width").find('ul li').removeClass("this");
+	jQuery("div.nav_width").find('ul li[op="$!op"]').addClass("this");
+	#end
+});
+
+</script>
+<script type="text/javascript">
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+WeixinJSBridge.call('hideToolbar');
+});
+</script>
+<nav>
+<div class="nav_width">
+<ul>
+<li op="index"><a href="$!webPath/weixin/index.htm?store_id=$!{store.id}"><b class="nav_b"></b></a></li>
+<li op="account"><a href="$!webPath/weixin/buyer/account.htm"><b  class="nav_c"></b></a></li>
+<li op="cart"><a href="$!webPath/weixin/goods_cart1.htm"><b  class="nav_d"><em>$!cart_size</em></b></a></li>
+#if($!user)
+<li ><a href="$!webPath/lakecloud_logout.htm?lakecloud_view_type=weixin"><b class="nav_e"></b></a></li>
+#else
+<li ><a href="javascript:void(0);"><b  class="nav_e"></b></a></li>
+#end
+</ul></div>
+<div class="nav_logo">
+#if($!store.store_weixin_logo)
+<img src="$!webPath/$!store.store_weixin_logo.path/$!store.store_weixin_logo.name" width="117" height="27"/>
+#else
+<img src="$!webPath/resources/style/weixin/default/images/logo.png"  />
+#end
+</div>
+</nav>

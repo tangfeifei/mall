@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/>
+<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+<script src="$!webPath/resources/js/jquery.validate.min.js"></script>
+<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+<script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+<script>
+jQuery(document).ready(function(){
+  jQuery("#theForm").validate({
+    rules:{
+	  userName:{
+	    required :true
+	  },
+	  amount:{required:true,digits:true,min:1},
+	  content:{required:true}
+	 },
+	messages:{
+	  userName:{required:"会员名不能为空"},
+	  amount:{required:"金额不能为空",digits:"金额只能为正整数",min:"金额不能小于1"},
+	  content:{required:"保证金操作说明不能为空"}
+	}
+  });	
+});
+function verify_user_deposit(){
+  var userName=jQuery("#userName").val();
+  if(userName!=""){
+    jQuery.post("$!webPath/admin/verify_user_deposit.htm",{"userName":userName},function(data){
+       if(data=="-1"){
+	     jQuery("#userName").val("");
+		 jQuery("#user_deposit_info").html("").hide();
+	     alert("不存在该店铺！");
+	   }else{
+	      if(data=="0"){
+		    jQuery("#userName").val("");
+		    jQuery("#user_deposit_info").html("").hide();
+	        alert("该店铺没有缴纳保证金！");
+		  }else{
+		    jQuery("#user_deposit_info").html("会员"+userName+",当前保证金:"+data+"元").show();
+		  }
+	   }
+    },"text")
+  }else{
+    jQuery("#user_deposit_info").html("").hide();
+  }
+}
+function saveForm(method){
+   jQuery("#theForm").submit();
+}
+</script>
+</head>
+<body>
+<div class="cont">
+ <h1 class="seth1"><span class="buyer_p_box">店铺保证金</span></h1>
+  <div class="settab"> <span class="tab-one"></span> <span class="tabs"> <a href="$!webPath/admin/deposit_list.htm">保证金缴纳信息</a> | <a href="$!webPath/admin/deposit_log_list.htm">保证金详细日志</a> | <a href="$!webPath/admin/deposit_adjust.htm" class="this">调整保证金</a></span> <span class="tab-two"></span> </div>
+  <form name="theForm" id="theForm" action="$!webPath/admin/deposit_adjust_save.htm" method=post>
+    <input name="currentPage" type="hidden" id="currentPage" value="$!currentPage" />
+    <div class="setcont">
+      <ul class="set1">
+        <li><strong class="orange fontsize20">*</strong>会员名</li>
+		<li id="user_deposit_info" style="display:none;"></li>
+        <li><span class="webname">
+          <input name="userName" type="text" id="userName" size="40" onblur="verify_user_deposit();" />
+          </span></li>
+      </ul>
+      <ul class="set1">
+        <li>操作类型</li>
+        <li><span class="webnamesec sizese">
+          <select name="operate_type" id="operate_type">
+            <option value="1">扣除</option>          
+            <option value="2">增加</option>
+            <option value="3">退还</option>
+          </select>
+          </span></li>
+      </ul>
+      <ul class="set1">
+        <li><strong class="orange fontsize20">*</strong>操作金额</li>
+        <li><span class="webname">
+          <input name="amount" type="text" id="amount" size="40" />
+          </span></li>
+      </ul>
+      <ul class="set1">
+        <li><strong class="orange fontsize20">*</strong>操作说明</li>
+        <li><span class="webname">
+          <textarea name="content" cols="40" rows="4" id="content"></textarea>
+          </span></li>
+      </ul>
+    </div>
+  </form>
+  <div class="submit">
+    <input name="save" type="button" value="提交" onclick="saveForm()" />
+  </div>
+</div>
+</body>
+</html>

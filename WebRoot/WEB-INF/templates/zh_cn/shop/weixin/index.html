@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>微信店铺 - 首页</title>
+<link href="$!webPath/resources/style/weixin/default/css/phone.css" rel="stylesheet" type="text/css" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+</head>
+<body>
+<div class="page_bottom">
+$!httpInclude.include("/weixin/search.htm")
+<div class="index_box">
+  <div class="index_box_menu">
+  <a  href="$!webPath/weixin/goods_recommend_list.htm" class="menu_a"><b></b><i>推荐</i></a>
+    <a  href="$!webPath/weixin/goods_list.htm?queryType=addTime" class="menu_b"><b></b><i>新品</i></a>
+   <a  href="$!webPath/weixin/goods_list.htm?queryType=goods_salenum" class="menu_c"><b></b><i>热卖</i></a>
+    <a  href="$!webPath/weixin/classes_first_list.htm" class="menu_d"><b></b><i>类目</i></a>
+    <a  href="$!webPath/weixin/platform/index.htm" class="menu_e"><b></b><i>商城</i></a>
+     </div>
+  <div class="index_box_hot">
+    <h3><a href="$!webPath/weixin/goods_list.htm?queryType=goods_salenum">显示全部</a>热卖宝贝</h3>
+    <ul>
+    #foreach($goods in $hot_goods_list)
+      #set($class="hot_big")
+      #if($!velocityCount==2||$!velocityCount==3)
+        #set($class="hot_small_left")
+      #end
+      #if($!velocityCount==4||$!velocityCount==5)
+        #set($class="hot_small_botm_left")
+      #end
+      #if($!velocityCount==$!hot_goods_list.size())
+        #set($class="hot_small_botm_right")
+      #end
+       #if($!goods.goods_main_photo)
+          #set($bigimg="$!imageWebServer/$!{goods.goods_main_photo.path}/$!{goods.goods_main_photo.name}")              
+          #set($img="$!imageWebServer/$!{goods.goods_main_photo.path}/$!{goods.goods_main_photo.name}_small.$!{goods.goods_main_photo.ext}")
+        #else
+          #set($img="$!imageWebServer/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+          #set($bigimg="$!imageWebServer/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+        #end
+      <li class="$!class">
+      
+      <span class="img_cspan"><p><a href="$!webPath/weixin/goods.htm?goods_id=$!goods.id"><img #if($!velocityCount==1)src="$!bigimg" #else  src="$!img" #end> </a></p></span>
+     
+      </li>
+    #end
+    </ul>
+  </div>
+</div>
+<div class="indexlist">
+  <section class="indexlist_box">
+    <h3>新品上市</h3>
+    <ul>
+      #foreach($goods in $new_goods_list)
+        #if($!goods.goods_main_photo)              
+          #set($img="$!imageWebServer/$!{goods.goods_main_photo.path}/$!{goods.goods_main_photo.name}_small.$!{goods.goods_main_photo.ext}")
+        #else
+          #set($img="$!imageWebServer/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+        #end
+      <li><span><a href="$!webPath/weixin/goods.htm?goods_id=$!goods.id"><img src="$!img" width="100%" height="100%"></a></span>
+       <p><a href="$!webPath/weixin/goods.htm?goods_id=$!goods.id">$!goods.goods_name</a></p>
+        <i>¥$!{goods.store_price}</i>
+      </li>
+      #end
+    </ul>
+  </section>
+</div>
+<div class="indexlist">
+  <section class="indexlist_box">
+    <h3>推荐商品</h3>
+    <ul>
+      #foreach($goods in $recommend_goods_list)
+        #if($!goods.goods_main_photo)              
+          #set($img="$!imageWebServer/$!{goods.goods_main_photo.path}/$!{goods.goods_main_photo.name}_small.$!{goods.goods_main_photo.ext}")
+        #else
+          #set($img="$!imageWebServer/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+        #end
+      <li><span><a href="$!webPath/weixin/goods.htm?goods_id=$!goods.id"><img src="$!img" width="100%" height="100%"></a></span>
+        <p><a href="$!webPath/weixin/goods.htm?goods_id=$!goods.id">$!goods.goods_name</a></p>
+        <i>¥$!{goods.store_price}</i>
+      </li>
+     #end
+    </ul>
+  </section>
+</div>
+$!httpInclude.include("/weixin/footer.htm")
+</div>
+$!httpInclude.include("/weixin/nav_bottom.htm?op=index")
+</body>
+</html>

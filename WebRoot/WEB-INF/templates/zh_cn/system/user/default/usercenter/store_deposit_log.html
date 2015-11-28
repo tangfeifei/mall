@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>兑换列表-  Powered by LakeCloud</title>
+<meta name="keywords" content="$!config.keywords" />
+<meta name="description" content="$!config.description" />
+<meta name="generator" content="LakeCloud 1.5" />
+<meta name="author" content="www.chinacloud.net">
+<meta name="copyright" content="LakeCloud Inc. All Rights Reserved">
+<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+<link href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type="text/css" rel="stylesheet" />
+<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+<script>
+jQuery(document).ready(function(){	
+   //
+});
+</script>
+<body>
+$!httpInclude.include("/top.htm")
+<div class="main"> $!httpInclude.include("/seller/nav_head.htm")
+  <div class="user_center">
+    <form method="post" id="ListForm">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+        <tr> $!httpInclude.include("/seller/nav.htm?op=store_deposit")
+          <td id="centerbg" valign="top"><div class="buyer_position">
+              <div class="buyer_p_box"><a href="$!webPath/seller/index.htm">卖家中心</a> >店铺保证金日志</div>
+            </div>
+            <div class="productmain">
+              <div class="ordernav">
+                <ul class="orderul">
+                  <li><a href='$!webPath/seller/store_deposit.htm' >缴纳店铺保证金</a></li>
+                  <li class="this"><a href='$!webPath/seller/store_deposit_log.htm' >保证金日志</a></li>
+                </ul>
+              </div>
+              <div class="ordercon">
+                <div class="operation">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0" id="opertable" >
+                    <tr class="opertr">
+                      <td align="left"><table width="100%" border="0" cellspacing="0" cellpadding="0" id="opertable2" >
+                          <tr id="opertitle">
+                            <td width="50">编号</td>
+                            <td width="120">缴纳日期</td>
+                            <td  width="60">保证金金额</td>
+                            <td width="80">支付方式</td>
+                            <td width="80">缴费状态</td>
+                            <td width="80" align="left">类型</td>
+                            <td width="80" align="left">操作管理员</td>
+                            <td>操作时间</td>
+                          </tr>
+                          #foreach($obj in $objs)
+                          <tr class="opertr">
+                            <td>$!obj.id</td>
+                            <td>$!CommUtil.formatLongDate($!obj.addTime)</td>
+                            <td>$!{obj.dp_amount}元 </td>
+                            <td>$!obj.dp_payment</td>
+                             #if($!obj.dp_status==10)
+                               #set($status="支付完成")
+                             #end
+                             #if($!obj.dp_status==-1)
+                               #set($status="拒绝通过")
+                             #end
+                             #if($!obj.dp_status==0)
+                               #set($status="未支付")
+                             #end
+                             #if($!obj.dp_status==5)
+                               #set($status="待审核")
+                             #end
+                            <td>$!status</td>
+                           #if($!obj.dp_type==0)
+                             #set($op_type="缴纳")
+                          #end
+                          #if($!obj.dp_type==1)
+                             #set($op_type="扣除")
+                          #end
+                          #if($!obj.dp_type==2)
+                             #set($op_type="增加")
+                          #end
+                          #if($!obj.dp_type==3)
+                             #set($op_type="退还")
+                          #end
+                            <td>$!op_type</td>
+                            <td>$!obj.dp_op_user_name</td>
+                            <td align="left">$!CommUtil.formatLongDate($!obj.dp_op_time)</td>
+                          </tr>
+                          #end
+                        </table></td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="alldel">
+                  <div  class="userfenye">
+                    <input name="currentPage" type="hidden" id="currentPage" value="$!currentPage" />
+                    $!gotoPageFormHTML</div>
+                </div>
+              </div>
+            </div></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  $!httpInclude.include("/footer.htm") </div>
+</body>
+</html>

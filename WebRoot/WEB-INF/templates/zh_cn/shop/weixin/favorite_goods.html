@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>微信商城 - 我的收藏</title>
+<link href="$!webPath/resources/style/weixin/default/css/phone.css" rel="stylesheet" type="text/css" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+<script>
+jQuery(document).ready(function() {
+   var beginCount =6;
+  jQuery("#loading_more").click(function(){
+	  jQuery.post("$!webPath/weixin/buyer/favorite_goods_ajax.htm",
+		  {
+		  "beginCount":beginCount	  
+		  },
+		  function(data){
+			  if(data){
+				  jQuery("#fav_goods_list").append(data)
+				  beginCount = beginCount +6;
+				   }else{
+					  jQuery(".index_load").hide();
+					 jQuery("#no_more").show();
+				   }
+			  },
+		  "text");	  
+		  });  	  
+});
+</script>
+</head>
+<body>
+<div class="page_bottom">
+<hgroup>
+  <h3 class="goods_car"><a href="javascript:history.go(-1);"><em></em></a><span><b>我的收藏</b></span></h3>
+</hgroup>
+<span id="fav_goods_list"> #foreach($obj in $objs)
+#if($!obj.goods.goods_main_photo)
+#set($img="$!webPath/$!{obj.goods.goods_main_photo.path}/$!{obj.goods.goods_main_photo.name}_small.$!{obj.goods.goods_main_photo.ext}")
+#else
+#set($img="$!webPath/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+#end
+<dl class="goodsdl">
+<a href="$!webPath/weixin/goods.htm?goods_id=$!{obj.goods.id}">
+  <dt> <span class="goodsimg"><img src="$!img" width="50" height="50" /></span>
+    <h3>$!obj.goods.goods_name</h3>
+    </dt>
+    </a>
+  <dd><em>收藏时间：$!CommUtil.formatLongDate($!obj.addTime)</em><i><strong>$!{config.currency_code}$!{obj.goods.store_price}</strong></i></dd>
+</dl>
+#end </span> #if($!objs.size()>0)
+<div class="index_load"><a href="javascript:void(0);" id="loading_more">加载更多</a></div>
+<div class="index_load" id="no_more" style="display: none"><a href="javascript:void(0);" style="color:#F00">没有更多数据了</a></div>
+#else <span class="goods_none"><img src="$!webPath/resources/style/system/front/default/images/sigh.jpg" width="80"  height="62"/>
+<p>对不起，没有相应数据！</p>
+</span> #end
+</div>
+$!httpInclude.include("/weixin/nav_bottom.htm?op=account")
+</body>

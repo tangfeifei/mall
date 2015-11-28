@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>微信商城 - 正在支付</title>
+<link href="$!webPath/resources/style/weixin/default/css/phone.css" rel="stylesheet" type="text/css" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+</head>
+<body>
+<hgroup>
+  <h3 class="goods_car"><a href="javascript:history.go(-1);"><em></em></a><span><b>正在支付</b></span></h3>
+</hgroup>
+<div class="paywaiting"> <span> <img src="$!imageWebServer/resources/style/common/images/loading.gif"  /></span> <span style="margin-top:10px;">正在为您跳转支付页面，请等待......</span></div>
+$!httpInclude.include("/weixin/footer.htm")
+</body>
+</html>
+#if($!type=="goods")
+  #set($id="$!order_id")
+#end
+#if($!type=="cash")
+  #set($id="$!cash_id")
+#end
+#if($!type=="gold")
+  #set($id="$!gold_id")
+#end
+#if($!type=="integral")
+  #set($id="$!integral_order_id")
+#end
+
+#if($!{payType}=="alipay_wap")
+ $!payTools.genericAlipayWap("$!url","$!payment_id","$!type","$!id")
+#end
+#if($!{payType}=="bill")
+$!payTools.generic99BillWap("$!url","$!payment_id","$!type","$!id")
+#end
+
+#if($!{payType}=="tenpay")
+<script>
+ window.location.href='$!webPath/wap_tenpay.htm?type=$!type&payment_id=$!payment_id&id=$!id';
+</script>
+#end
+#if($!{payType}=="chinabank")
+$!payTools.genericChinaBankWap("$!url","$!payment_id","$!type","$!id")
+#end
+#if($!{payType}=="paypal")
+$!payTools.genericPaypalWap("$!url","$!payment_id","$!type","$!id")
+#end
+
+$!httpInclude.include("/weixin/nav_bottom.htm")

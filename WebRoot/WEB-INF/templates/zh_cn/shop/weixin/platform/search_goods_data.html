@@ -1,0 +1,12 @@
+#foreach($obj in $objs)
+#set($img="$!imageWebServer/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+#if($!obj.goods_main_photo)
+#set($big_img="$!imageWebServer/$!obj.goods_main_photo.path/$!obj.goods_main_photo.name")
+#set($img="${big_img}_small.$!{obj.goods_main_photo.ext}")
+#end
+<ul>
+<li><a href="$!webPath/weixin/goods.htm?goods_id=$!obj.id"><img src="$!img"></a></li>
+<li class="baby_name"><a href="$!webPath/weixin/goods.htm?goods_id=$!obj.id">$!obj.goods_name</a></li>
+<li class="price"><strong>¥$!obj.goods_current_price</strong></li>
+</ul>
+#end

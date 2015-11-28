@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>微信商城 - 首页</title>
+<link href="$!webPath/resources/style/weixin/default/css/platform.css" rel="stylesheet" type="text/css" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+<script src="$!webPath/resources/js/jcarousellite_1.0.1.min.js"></script>
+<script src="$!webPath/resources/js/jquery.KinSlideshow.min.js"></script>
+<script>
+function save_search(){
+	jQuery("#searchForm").submit();
+	};
+</script>
+</head>
+
+<body>
+<header>
+<form id="searchForm" name="searchForm" action="$!webPath/weixin/platform/search_goods_list.htm" method="post">
+  <div class="main">
+#set($logo="$!webPath/resources/style/weixin/default/images/logo.png")
+#if($!config.store_weixin_logo)
+#set($logo="$!webPath/$!config.store_weixin_logo.path/$!config.store_weixin_logo.name")
+#end
+    <div class="logo"><img src="$!logo" width="83" height="23" /></div>
+    <input class="search" type="text" id="keyword" name="keyword" />
+    <div class="search_btn"><a href="javascript:void(0);" onClick="save_search()">搜索</a></div>
+  </div>
+</form>  
+</header>
+<div class="main">
+  <div class="banner"> <script src="$!webPath/advert_invoke.htm?id=1"></script></div>
+  <div class="nav">
+    <ul>
+      <li><a href="$!webPath/weixin/platform/goods_list.htm?type=recommend"><span class="red_grand"></span>
+        <p>推荐</p>
+        </a></li>
+      <li><a href="$!webPath/weixin/platform/group_goods_list.htm"><span class="yellow_grand"></span>
+        <p>团购</p>
+        </a></li>
+      <li><a href="$!webPath/weixin/platform/activity_goods_list.htm"><span class="pink_grand"></span>
+        <p>促销</p>
+        </a></li>
+      <li><a href="$!webPath/weixin/platform/classes_first.htm"><span class="orange_grand"></span>
+        <p>类目</p>
+        </a></li>
+    </ul>
+  </div>
+</div>
+<div class="main">
+  <div class="hot_baby">
+    <h1><span class="fl">精品团购</span><span class="fr"><a href="$!webPath/weixin/platform/group_goods_list.htm">显示全部>></a></span></h1>
+  </div>
+</div>
+#if($!gg_recommend.gg_img)
+#set($gg_img = "$!webPath/$!gg_recommend.gg_img.path/$!gg_recommend.gg_img.name")
+#else
+#set($gg_img = "$!imageWebServer/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+#end
+<div class="main_width">
+  <div class="main">
+    <div class="group">
+      <div class="group_fl"><a href="$!webPath/weixin/goods.htm?goods_id=$!gg_recommend.gg_goods.id"><img src="$!gg_img"></a></div>
+      <div class="group_fr">
+        <ul>
+          <li class="name"><a href="$!webPath/weixin/goods.htm?goods_id=$!gg_recommend.gg_goods.id">$!gg_recommend.gg_name</a></li>
+          <li class="price_gp"><i></i><span><b>$!gg_recommend.gg_price</b><a href="$!webPath/weixin/goods.htm?goods_id=$!{gg_recommend.gg_goods.id}">去看看</a></span></li>
+    #set($save="$!CommUtil.null2Double($!CommUtil.subtract($!gg_recommend.gg_goods.goods_price, $!gg_recommend.gg_price))")
+          <li class="save"> <span><b>原价</b><i>$!gg_recommend.gg_goods.goods_price</i></span> <span><b>节省</b><em>$!save</em></span> <span class="br_none"><b>已售出</b><em>$!gg_recommend.gg_vir_count件</em></span> </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="hot_baby">
+    <h1><span class="fl">热卖宝贝</span><span class="fr"><a href="$!webPath/weixin/platform/goods_list.htm?type=hot">显示全部>></a></span></h1>
+  </div>
+</div>
+<div class="main_width">
+  <div class="main">
+    <div class="hot_main">
+       #set($img="$!imageWebServer/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+        #foreach($hot in $goods_hots)
+        #if($!hot.goods_main_photo)
+        #set($hot_img="$!imageWebServer/$!hot.goods_main_photo.path/$!hot.goods_main_photo.name")
+        #set($img="${hot_img}_small.$!{hot.goods_main_photo.ext}")
+        #if($!velocityCount==1)
+         #set($img="$!imageWebServer/$!hot.goods_main_photo.path/$!hot.goods_main_photo.name")
+        #end
+        #end
+        <div class="hot_main_img$!{velocityCount}"><a href="$!webPath/weixin/goods.htm?goods_id=$!{hot.id}"><img src="$!img" /></a></div>
+        #end
+    </div>
+  </div>
+</div>
+<div class="main">
+  <div class="hot_baby">
+    <h1><span class="fl">品牌推荐</span><span class="fr"><a href="$!webPath/weixin/platform/brand_list.htm">显示全部>></a></span></h1>
+  </div>
+</div>
+<div class="main_width">
+  <div class="main">
+    <div class="recommend">
+      <ul>
+        #foreach($brand in $brands_recommend)
+        <li><a href="$!webPath/weixin/platform/search_goods_list.htm?gb_id=$!brand.id"><img src="$!webPath/$!brand.brandLogo.path/$!brand.brandLogo.name"/></a></li>
+        #end
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="main">
+  <div class="hot_baby">
+    <h1><span class="fl">商城推荐</span><span class="fr"><a href="$!webPath/weixin/platform/goods_list.htm?type=recommend">显示全部>></a></span></h1>
+  </div>
+</div>
+
+  <div class="main">
+    <div class="recom_main">
+      <div class="recom_main_l">        
+        #set($img="$!imageWebServer/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+        #foreach($recommend in $goods_recommends)
+        #if($!recommend.goods_main_photo)
+        #set($recommend_img="$!imageWebServer/$!recommend.goods_main_photo.path/$!recommend.goods_main_photo.name")
+        #set($img="${recommend_img}_small.$!{recommend.goods_main_photo.ext}")
+         #if($!velocityCount==1)
+          #set($img="$!imageWebServer/$!recommend.goods_main_photo.path/$!recommend.goods_main_photo.name")
+        #end
+        #end
+        <div class="hot_main_img$!{velocityCount}"><a href="$!webPath/weixin/goods.htm?goods_id=$!{recommend.id}"><img src="$!img" /></a></div>
+        #end
+    </div>
+  </div>
+</div>
+<div class="main"> $!httpInclude.include("/weixin/platform/footer.htm") </div>
+$!httpInclude.include("/weixin/platform/nav_bottom.htm?op=index")
+
+</body>
+</html>

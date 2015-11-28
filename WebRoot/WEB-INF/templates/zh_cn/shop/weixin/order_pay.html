@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>微信商城 - 选择支付方式</title>
+<link href="$!webPath/resources/style/weixin/default/css/phone.css" rel="stylesheet" type="text/css" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+<script>
+//返回当前页面高度
+function order_pay(){
+  jQuery('#theForm').submit();
+}
+jQuery(document).ready(function(){
+    jQuery(":radio[value=$!of.payment.mark]").attr("checked",true).parent().parent().find("span.bankimg").addClass("this").find("div.this_ok").show();
+	#if($!of.payment.mark)
+	jQuery(".bankcar").find(".bankimg").removeClass("this");
+	jQuery(".bankcar").find(".this_ok").hide();
+	#end
+  //
+   jQuery("label").click(function(){
+	   jQuery("span.bankimg").removeClass("this").find("div.this_ok").hide();  
+	   jQuery(this).find("span.bankimg").addClass("this").find("div.this_ok").show();
+	});
+	jQuery(":radio[checked=true]").parent().parent().find("span.bankimg").addClass("this").find("div.this_ok").show();
+});
+
+</script>
+</head>
+<body>
+<div class="page_bottom2">
+  <hgroup>
+    <h3 class="goods_car"><a href="javascript:history.go(-1);"><em></em></a><span><b>选择支付方式</b></span></h3>
+  </hgroup>
+  <form action="$!webPath/weixin/order_pay.htm" method="post" id="theForm">
+    <div class="payorder">
+      <div class="paybot">
+        <h1><span>订单信息如下</span></h1>
+        <ul>
+          <li><strong>订单编号：</strong><strong class="orange">$!{of.order_id}</strong></li>
+          <li><strong>应付金额：</strong><strong class="orange">¥$!{of.totalPrice}</strong></li>
+        </ul>
+        <h3>您可以在用户中心中<a href="$!webPath/weixin/buyer/order.htm">“我的订单”</a>查看该订单</h3>
+      </div>
+      <div class="bank">
+        <div class="banktitle">
+          <h1><span>您可以选择付款方式</span></h1>
+        </div>
+        <div class="bankcar">
+          <ul>
+            <li>
+              <h1>在线支付</h1>
+              #if($!config.config_payment_type==0) 
+              #set($install=$!paymentTools.queryStorePayment("alipay","$!{of.store.id}").get("install"))
+              #else
+              #set($install=$!paymentTools.queryShopPayment("alipay").get("install"))
+              #end
+              #if($!install==true)
+              <div class="bankone">
+                <label>
+                <span class="banksp">
+                <input name="payType" type="radio" value="alipay" checked="checked" />
+                </span> <span class="bankimg">网页支付宝
+                <div class="this_ok" style="display:none"></div>
+                </span>
+                </label>
+                <span class="bank_txt"></span> </div>
+              #end
+              #if($!config.config_payment_type==0) 
+              #set($install=$!paymentTools.queryStorePayment("alipay_wap","$!{of.store.id}").get("install"))
+              #else
+              #set($install=$!paymentTools.queryShopPayment("alipay_wap").get("install"))
+              #end
+              #if($!install==true)
+              <div class="bankone">
+                <label>
+                <span class="banksp">
+                <input name="payType" type="radio" value="alipay_wap" checked="checked" />
+                </span> <span class="bankimg">手机支付宝
+                <div class="this_ok" style="display:none"></div>
+                </span>
+                </label>
+              </div>
+              #end
+              #if($!config.config_payment_type==0) 
+              #set($install=$!paymentTools.queryStorePayment("paypal","$!{of.store.id}").get("install"))
+              #else
+              #set($install=$!paymentTools.queryShopPayment("paypal").get("install"))
+              #end
+              #if($!install==true)
+              <div class="bankone">
+                <label>
+                <span class="banksp">
+                <input name="payType" type="radio" value="paypal" />
+                </span> <span class="bankimg">Paypal支付
+                <div class="this_ok" style="display:none"></div>
+                </span>
+                </label>
+              </div>
+              #end
+              #if($!config.config_payment_type==0) 
+              #set($install=$!paymentTools.queryStorePayment("tenpay","$!{of.store.id}").get("install"))
+              #else
+              #set($install=$!paymentTools.queryShopPayment("tenpay").get("install"))
+              #end
+              #if($!install==true)
+              <div class="bankone">
+                <label>
+                <span class="banksp">
+                <input name="payType" type="radio" value="tenpay" />
+                </span> <span class="bankimg">财付通支付
+                <div class="this_ok" style="display:none"></div>
+                </span>
+                </label>
+              </div>
+              #end
+              #if($!config.config_payment_type==0) 
+              #set($install=$!paymentTools.queryStorePayment("chinabank","$!{of.store.id}").get("install"))
+              #else
+              #set($install=$!paymentTools.queryShopPayment("chinabank").get("install"))
+              #end
+              #if($!install==true)
+              <div class="bankone">
+                <label>
+                <span class="banksp">
+                <input name="payType" type="radio" value="chinabank" />
+                </span> <span class="bankimg">网银支付
+                <div class="this_ok" style="display:none"></div>
+                </span>
+                </label>
+              </div>
+              #end
+              #if($!config.config_payment_type==0) 
+              #set($install=$!paymentTools.queryStorePayment("bill","$!{of.store.id}").get("install"))
+              #else
+              #set($install=$!paymentTools.queryShopPayment("bill").get("install"))
+              #end
+              #if($!install==true)
+              <div class="bankone">
+                <label>
+                <span class="banksp">
+                <input name="payType" type="radio" value="bill" />
+                </span> <span class="bankimg">快钱支付
+                <div class="this_ok" style="display:none"></div>
+                </span>
+                </label>
+              </div>
+              #end </li>
+            <li>
+              <h1>线下支付</h1>
+              #if($!config.config_payment_type==0) 
+              #set($install=$!paymentTools.queryStorePayment("outline","$!{of.store.id}").get("install"))
+              #else
+              #set($install=$!paymentTools.queryShopPayment("outline").get("install"))
+              #end
+              #if($!install==true)
+              <div class="bankone">
+                <label>
+                <span class="banksp">
+                <input name="payType" type="radio" value="outline" />
+                </span> <span class="bankimg">线下支付
+                <div class="this_ok" style="display:none"></div>
+                </span>
+                </label>
+              </div>
+              #end </li>
+            <li>
+              <h1>货到付款</h1>
+              #if($!config.config_payment_type==0) 
+              #set($install=$!paymentTools.queryStorePayment("payafter","$!{of.store.id}").get("install"))
+              #else
+              #set($install=$!paymentTools.queryShopPayment("payafter").get("install"))
+              #end
+              #if($!install==true)
+              <div class="bankone">
+                <label>
+                <span class="banksp">
+                <input name="payType" type="radio" value="payafter" />
+                </span> <span class="bankimg">货到付款
+                <div class="this_ok" style="display:none"></div>
+                </span>
+                </label>
+              </div>
+              #end </li>
+            <li>
+              <h1>预存款支付</h1>
+              #if($!config.config_payment_type==0) 
+              #set($install=$!paymentTools.queryStorePayment("balance","$!{of.store.id}").get("install"))
+              #else
+              #set($install=$!paymentTools.queryShopPayment("balance").get("install"))
+              #end
+              #if($!install==true)
+              <div class="bankone">
+                <label>
+                <span class="banksp">
+                <input name="payType" type="radio" value="balance" />
+                </span> <span class="bankimg">预存款支付
+                <div class="this_ok" style="display:none"></div>
+                </span>
+                </label>
+              </div>
+              #end </li>
+          </ul>
+        </div>
+        <div class="banknextbtn">
+          <input name="" type="button"  value="确认支付" onClick="order_pay();" style="cursor:pointer;"/>
+          <input name="order_id" type="hidden" id="order_id" value="$!{of.id}" />
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+$!httpInclude.include("/weixin/nav_bottom.htm?op=cart")
+</body>
+</html>

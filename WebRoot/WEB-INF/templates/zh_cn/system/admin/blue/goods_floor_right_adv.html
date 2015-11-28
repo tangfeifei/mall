@@ -1,0 +1,211 @@
+#macro ( genericTree $somelist ) 
+#foreach ( $some in $somelist )
+<option value="$!some.id">
+#if($!some.level>0)
+#foreach($count in [0..$!some.level])&nbsp;&nbsp;#end #end $!some.className</option>
+#genericTree($some.childs) 
+#end 
+#end
+
+<script>
+jQuery(document).ready(function(){
+  jQuery(":radio").click(function(){
+     if(jQuery(this).val()=="user"){
+	   jQuery("li[id^=user_adv_]").show();
+	   jQuery("#shop_adv").hide();
+	   jQuery("#shop_config").hide();
+	 }else if(jQuery(this).val()=="shop"){
+	 	jQuery("#shop_config").show();
+	 	 jQuery("li[id^=user_adv_]").hide();
+	   jQuery("#shop_adv").hide();	 
+	 }else{
+	   jQuery("li[id^=user_adv_]").hide();
+	   jQuery("#shop_adv").show();	 
+	   jQuery("#shop_config").hide();
+	 }
+  });
+  jQuery("#img").change(function(){
+	jQuery("#img_text").val(jQuery("#img").val());
+  })
+});
+
+
+ 
+
+
+function goods_floor_list_shop_load(){
+	var sc_id=jQuery("#sc_id").val();
+ 
+	var shop_name =jQuery("#shop_name").val();
+	 
+	 jQuery.ajax({type:'POST',url:'$!webPath/admin/goods_floor_list_shop_load.htm',data:{"sc_id":sc_id,"shop_name":shop_name},
+			  success:function(data){
+					jQuery("#floor_shop_list").empty().append(data);	
+		}	
+	  });
+}
+
+
+function shop_list_set(obj){
+
+  var img=jQuery(obj).attr("img_uri");
+  var shop_id=jQuery(obj).attr("shop_id"); 
+  var shop_name=jQuery(obj).attr("shop_name");
+  var count=jQuery(".floor_box_pls ul").length;
+  var add=0; 
+  if(count>6){
+	  alert("最多只能添加6个商家！");
+	  add=1;
+  }
+  
+  jQuery(".floor_box_pls ul").each(function(){
+   
+     if(jQuery(this).attr("shop_id")==shop_id){
+	   alert("已经存在该商家");
+	   add=2;
+	 }
+  });
+  alert(add);
+  if(add==0){
+  var s="<ul ondblclick='jQuery(this).remove();' class='floor_pro' shop_id='"+shop_id+"'><li class='floor_pro_img'><img src='"+img+"' width='70' height='70' /></li><li class='floor_pro_name'>"+shop_name+"</li></ul>";
+  jQuery(".floor_box_pls").append(s);
+  }
+}
+function save_form(){
+ var ids="";
+ jQuery(".floor_box_pls ul").each(function(){
+   ids=ids+","+jQuery(this).attr("shop_id"); 
+ });
+ 
+ jQuery("#ids").val(ids);
+ jQuery("#theForm").submit();
+}
+</script>
+<form action="$!webPath/admin/goods_floor_right_adv_save.htm" method="post" enctype="multipart/form-data" id="theForm">
+<div class="box_floor">
+  <div class="floor_advertisment"> <em class="floor_warning">注释：可以上传广告图片也可以使用商城广告</em>
+    <ul class="floor_adv">
+      <li>
+       <b>
+       <input name="id" type="hidden" id="id" value="$!obj.id">
+       选择类型：</b> 
+      <span class="floor_adv_sp">
+      <i><input name="type" type="radio" id="type" value="user" checked="checked" />图片上传</i>
+      <i><input name="type" type="radio" id="type" value="adv" />商城广告</i>
+      <i><input name="type" type="radio" id="type" value="shop" />选择店铺</i>
+      </span> 
+      </li>
+      
+      <li id="user_adv_img"> 
+      <b>广告图片上传：</b> 
+      <span class="floor_adv_sp">
+        <input name="img_text"  type="text" class="floor_file_txt" id="img_text" />
+        <input name="button" type="button" class="floor_file_btn" value=""/>
+        <input name="img"  type="file" class="flooor_file" id="img"  size="33"/>
+        </span>
+        <i class="floor_adv_i">建议上传199*199像素图片</i> 
+      </li>
+      <li id="user_adv_url"> <b>广告链接：</b>
+       <span class="floor_adv_sp">
+        <input name="adv_url" type="text"class="floor_file_txt2" id="adv_url" />
+        </span>
+      </li>
+      
+      
+       <li id="shop_adv" style="display:none;"> <b>广告选择：</b>
+       <span class="floor_adv_sp">
+       <select name="adv_id" id="adv_id">
+       #foreach($ap in $aps)
+       <option value="$!ap.id">$!{ap.ap_title}</option>
+       #end
+       </select>
+        </span>
+        <i class="floor_adv_i">仅支持199*199图片广告位</i> 
+      </li>
+      
+      
+      <li id="shop_config" style="display:none;"><b>请选择商家信息</b>
+      	    <div class="box_floor_prodel"> <em class="floor_warning">注释：最多选择6个店铺，双击删除已有店铺信息，按下鼠标拖动店铺次序</em>
+      <div class="floor_box_pls" id="floor_goods_info">
+ 
+     	 #set($shopmap=$!gf_tools.generic_shop_list("$!obj.gf_right_adv"))
+		     	  #if($!shopmap.shop1)
+		     	     	#if($!obj.store_banner)               
+  						#set($img="$!webPath/$!{shopmap.shop6.store_banner.path}/$!{shopmap.shop6.store_banner.name}")
+    				#else
+    					#set($img="$!webPath/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+    				#end
+		     	  <ul ondblclick='jQuery(this).remove();' class='floor_pro' shop_id='${shopmap.shop1.id}'><li class='floor_pro_img'><img src='$img' width='70' height='70' /></li><li class='floor_pro_name'>${shopmap.shop1.store_name}</li></ul>
+		     	  #end
+		     	  #if($!shopmap.shop2)
+		     	     	#if($!obj.store_banner)               
+  						#set($img="$!webPath/$!{shopmap.shop6.store_banner.path}/$!{shopmap.shop6.store_banner.name}")
+    				#else
+    					#set($img="$!webPath/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+    				#end
+		     	  <ul ondblclick='jQuery(this).remove();' class='floor_pro' shop_id='${shopmap.shop2.id}'><li class='floor_pro_img'><img src='$img' width='70' height='70' /></li><li class='floor_pro_name'>${shopmap.shop2.store_name}</li></ul>
+		     	  #end
+		     	  #if($!shopmap.shop3)
+		     	  	   	#if($!obj.store_banner)               
+  						#set($img="$!webPath/$!{shopmap.shop6.store_banner.path}/$!{shopmap.shop6.store_banner.name}")
+    				#else
+    					#set($img="$!webPath/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+    				#end
+		     	  <ul ondblclick='jQuery(this).remove();' class='floor_pro' shop_id='${shopmap.shop3.id}'><li class='floor_pro_img'><img src='$img' width='70' height='70' /></li><li class='floor_pro_name'>${shopmap.shop3.store_name}</li></ul>
+		     	  #end
+		     	  #if($!shopmap.shop4)
+		     	  	#if($!obj.store_banner)               
+  						#set($img="$!webPath/$!{shopmap.shop6.store_banner.path}/$!{shopmap.shop6.store_banner.name}")
+    				#else
+    					#set($img="$!webPath/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+    				#end
+		     	  <ul ondblclick='jQuery(this).remove();' class='floor_pro' shop_id='${shopmap.shop4.id}'><li class='floor_pro_img'><img src='$img' width='70' height='70' /></li><li class='floor_pro_name'>${shopmap.shop4.store_name}</li></ul>
+		     	  #end
+		     	  #if($!shopmap.shop5)
+		     	     	#if($!obj.store_banner)               
+  							#set($img="$!webPath/$!{shopmap.shop6.store_banner.path}/$!{shopmap.shop6.store_banner.name}")
+    					#else
+    						#set($img="$!webPath/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+    					#end
+		     	 <ul ondblclick='jQuery(this).remove();' class='floor_pro' shop_id='${shopmap.shop5.id}'><li class='floor_pro_img'><img src='$img' width='70' height='70' /></li><li class='floor_pro_name'>${shopmap.shop5.store_name}</li></ul>
+		     	  #end
+		     	  #if($!shopmap.shop6)
+		     	   	#if($!obj.store_banner)               
+  						#set($img="$!webPath/$!{shopmap.shop6.store_banner.path}/$!{shopmap.shop6.store_banner.name}")
+    				#else
+    					#set($img="$!webPath/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+    				#end
+		     	  <ul ondblclick='jQuery(this).remove();' class='floor_pro' shop_id='${shopmap.shop6.id}'><li class='floor_pro_img'><img src='$img' width='70' height='70' /></li><li class='floor_pro_name'>${shopmap.shop6.store_name}</li></ul>
+		     	  #end
+        </div>
+    </div>
+      	   <span class="floor_choose">选择要展示的商家：</span>
+    	   <div class="floor_choose_box"> <span class="floor_choose_sp"><b>选择分类：</b>
+		      <select name="sc_id" id="sc_id">
+		        <option value="">请选择商家分类...</option>
+		        #genericTree($!gcs) 
+		      </select>
+	      	  </span> <span class="floor_search_sp"><b>店铺名称：</b>
+	      	  <input name="goods_name" type="text" id="shop_name" />
+	      	 <input type="button"  class="floor_sear_btn" value="搜索" onclick="goods_floor_list_shop_load();" style="cursor:pointer;" />
+	         </span> <em class="floor_warning">注释：点击店铺加入漏乘，最多选择6件店铺</em>
+		     <div id="floor_shop_list">
+		     	  
+		     </div>
+    	</div>
+      </li>
+    </ul>
+  </div>
+  <div class="submit">
+    <input name="" type="button" value="提交"  onclick="save_form();"  />
+  </div>
+</div>
+<input type="hidden" name="ids" id="ids" />
+<script >
+	$(function(){
+		#if($!shopmap.list_title)
+			$(":radio[value='shop']").click();
+		#end
+	})
+</script>
+</form>

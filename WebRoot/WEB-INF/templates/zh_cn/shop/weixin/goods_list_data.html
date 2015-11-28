@@ -1,0 +1,17 @@
+#foreach($goods in $objs)
+<dl>
+  #if($!goods.goods_main_photo)              
+  #set($img="$!imageWebServer/$!{goods.goods_main_photo.path}/$!{goods.goods_main_photo.name}_small.$!{goods.goods_main_photo.ext}")
+  #else
+  #set($img="$!imageWebServer/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+  #end
+  <dt><a href="$!webPath/weixin/goods.htm?goods_id=$!goods.id"><img src="$!img" /></a></dt>
+  <dd>
+    <ul>
+      <li class="goods_name"><a href="$!webPath/weixin/goods.htm?goods_id=$!goods.id">$!goods.goods_name</a></li>
+      <li class="goods_price"><b>¥$!{goods.store_price}</b><del>¥$!{goods.goods_price}</del></li>
+      <li class="goods_address"><span>$!goods.goods_store.area.parent.parent.areaName</span>销量：$!{goods.goods_salenum}</li>
+    </ul>
+  </dd>
+</dl>
+#end

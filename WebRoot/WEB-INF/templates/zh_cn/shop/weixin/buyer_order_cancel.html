@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>微信商城 - 订单列表</title>
+<link href="$!webPath/resources/style/weixin/default/css/phone.css" rel="stylesheet" type="text/css" />
+<script src="$!webPath/resources/js/jquery-1.6.2.js"></script>
+<script>
+function switch_reason(){
+  var ck=jQuery("#reason_other").attr("checked");
+  if(ck=="checked"){
+    jQuery("#other_reason").show();
+  }else{
+	jQuery("#other_reason").hide();  
+  }
+}
+</script>
+</head>
+
+<body>
+<hgroup>
+  <h3 class="goods_car"><a href="javascript:history.go(-1);"><em></em></a><span><b>订单取消</b></span></h3>
+</hgroup>
+<form action="$!webPath/weixin/buyer/order_cancel_save.htm" method="post" id="theForm">
+  <table style="float:left;" width="100%" border="0" cellspacing="0" cellpadding="0" class="box_table">
+    <tr>
+      <td colspan="2" align="left" valign="top" class="order_tabth" >您确定要取消下面的订单吗?</td>
+    </tr>
+    <tr>
+      <td width="100" align="right" valign="top" class="order_tabtd">订单号：
+        <input name="id" type="hidden" id="id" value="$!obj.id" /></td>
+      <td align="left">$!obj.order_id</td>
+    </tr>
+    <tr>
+      <td rowspan="4" align="right" valign="top" class="order_tabtd">取消原因：</td>
+      <td align="left"><label>
+          <input name="state_info" type="radio" id="radio" value="改买其他商品" checked="checked"  onclick="switch_reason();"/>
+          改买其他商品</label></td>
+    </tr>
+    <tr>
+      <td align="left"><label>
+          <input name="state_info" type="radio" id="radio2" value="从其他店铺购买"  onclick="switch_reason();"/>
+          从其他店铺购买</label></td>
+    </tr>
+    <tr>
+      <td align="left"><label>
+          <input name="state_info" type="radio" id="reason_other" value="other" onclick="switch_reason();" />
+          其他原因</label></td>
+    </tr>
+    <tr>
+      <td align="left" id="other_reason" style="display:none;"><textarea name="other_state_info" id="other_state_info" cols="22" rows="5"></textarea></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center"><span class="inputbtn">
+        <input name="" type="submit" value="提交" style="cursor:pointer;"/>
+        </span></td>
+    </tr>
+  </table>
+</form>
+ $!httpInclude.include("/weixin/footer.htm")
+ $!httpInclude.include("/weixin/nav_bottom.htm?op=account")
+</body>
+</html>
