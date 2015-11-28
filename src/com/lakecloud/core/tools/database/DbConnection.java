@@ -11,15 +11,7 @@ import org.springframework.stereotype.Repository;
 
 * <p>Description: 数据库的连接,通过数据源注入链接数据库信息，使用线程管理链接，保证只存在一个数据库链接</p>
 
-* <p>Copyright: Copyright (c) 2012-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-4-27
-
-* @version LakeCloud_C2C 1.3
+  
  */
 @Repository
 @SuppressWarnings("serial")

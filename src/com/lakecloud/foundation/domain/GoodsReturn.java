@@ -19,8 +19,6 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 退货管理类
- * @since V1.0
- * @author江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

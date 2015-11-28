@@ -21,16 +21,7 @@ import com.lakecloud.core.constant.Globals;
 * <p>Description:重写SpringSecurity
  *       AbstractUserDetailsAuthenticationProvider，用来控制第三方账号登陆，第三方账号登录可以使用MD5后密码进行登录
  *       ,MD5密码登录使用Globals.THIRD_ACCOUNT_LOGIN作为前缀标识，系统自动不进行处理 </p>
-
-* <p>Copyright: Copyright (c) 2012-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-4-27
-
-* @version LakeCloud_C2C 1.3
+  
  */
 public class ShopAuthenticationProvider extends
 		AbstractUserDetailsAuthenticationProvider {

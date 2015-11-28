@@ -13,8 +13,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 系统模板类，包括站内短信模板、邮件模板，手机短信模板,通过velocity模板合成数据
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+   
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

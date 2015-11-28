@@ -13,8 +13,6 @@ import com.lakecloud.core.tools.CommUtil;
 
 /**
  * @info 微信开发App工具类
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
  * 
  */
 @Component

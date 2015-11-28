@@ -17,8 +17,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 商品规格管理类，用来描述商品规格信息，由超级管理员添加，卖家发布商品时候可以为商品选择相应的规格信息
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net wang 2012-06-25
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

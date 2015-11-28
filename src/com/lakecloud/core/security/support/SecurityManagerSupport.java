@@ -32,14 +32,7 @@ import com.lakecloud.foundation.service.IUserService;
  *       ，只有从超级管理登录页面登录的用户且该用户拥有超级管理权限，登录后才可以操作超级管理内容 </p>
 
 * <p>Copyright: Copyright (c) 2012-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-4-27
-
-* @version LakeCloud_C2C 1.3
+ 
  */
 public class SecurityManagerSupport implements UserDetailsService,
 		SecurityManager {

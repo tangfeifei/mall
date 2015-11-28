@@ -18,8 +18,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 系统权限资源管理控制器，用来记录系统权限资源信息，系统权限资源对应URL信息，SpringSecurity根据权限资源信息进行URL拦截处理
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity

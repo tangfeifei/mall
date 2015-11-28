@@ -37,8 +37,7 @@ import com.lakecloud.manage.seller.Tools.TransportTools;
 
 /**
  * @info 卖家中心运费管理控制器，V1.3版本开始，废除以前的配送方式管理
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Controller

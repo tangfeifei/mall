@@ -23,8 +23,6 @@ import com.lakecloud.foundation.service.IUserConfigService;
 
 /**
  * @info 商城活动前台管理控制控制器
- * @since V1.1
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
  * 
  */
 @Controller

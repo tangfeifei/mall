@@ -20,8 +20,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 个人动态管理类，商城用户可发布自己的动态、查看好友的动态以及对好友动态的评论、赞、转发（分享）
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net hezeng 20130725
+  
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

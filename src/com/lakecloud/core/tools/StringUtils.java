@@ -17,16 +17,7 @@ import java.util.TreeSet;
 * <p>Title: StringUtils.java</p>
 
 * <p>Description:字符串操作工具类，该类取自互联网开源免费软件，非lakecloud版权 </p>
-
-* <p>Copyright: Copyright (c) 2012-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-4-27
-
-* @version LakeCloud_C2C 1.3
+ 
  */
 public abstract class StringUtils {
 

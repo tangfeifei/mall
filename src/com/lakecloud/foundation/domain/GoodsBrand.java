@@ -23,9 +23,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info (商品)品牌管理类,品牌主要由超级管理员添加或者卖家申请，卖家申请的品牌需要审核后才能够显示
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net wang 2012-06-25
- * 
+ 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity

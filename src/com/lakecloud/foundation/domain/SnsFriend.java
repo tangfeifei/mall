@@ -13,8 +13,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 好友管理类,用户之间可以互相添加好友，好友之间可以发送站内信息，显示好友分享的动态信息
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

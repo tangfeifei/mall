@@ -24,8 +24,7 @@ import com.lakecloud.foundation.service.ITransportService;
 
 /**
  * @info 运费模板工具类，用来处理运费模板相关信息
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Component

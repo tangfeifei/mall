@@ -13,8 +13,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 用户个性化信息管理类，该类系统暂未使用，预留，可以保存用户登录后个性化信息
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

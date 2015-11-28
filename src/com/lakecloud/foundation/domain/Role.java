@@ -20,8 +20,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 角色管理类，用来存储系统角色信息，角色直接和权限相关
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

@@ -23,8 +23,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 系统配置管理类,包括系统基础信息内容及相关内容
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang、hz、wang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

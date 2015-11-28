@@ -13,8 +13,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 店铺升级日志类,店铺可以根据需要选择升级店铺等级，经过管理员批准（收费等级需要线下缴纳费用管理员确认）生效，该类是记录所有升级记录
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+  
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

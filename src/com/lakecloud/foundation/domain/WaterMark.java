@@ -13,8 +13,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 水印管理类 每个店铺，可以管理自己的水印
- * @since v1.2
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

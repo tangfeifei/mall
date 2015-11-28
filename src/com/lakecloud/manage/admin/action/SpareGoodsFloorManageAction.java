@@ -46,9 +46,8 @@ import com.lakecloud.foundation.service.ISysConfigService;
 import com.lakecloud.foundation.service.IUserConfigService;
 
 /**
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net hz 20130927
- * @info 平台闲置商品首页楼层控制器，用来管理所有闲置商品信息楼层显示
- * @since V1.3
+  
+ 
  * 
  */
 

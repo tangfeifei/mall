@@ -12,15 +12,7 @@ import java.lang.annotation.Target;
 * <p>Description:系统权限资源标签，LakeCloud商城系统使用springSecurity作为权限框架，该注解用在需要纳入权限管理的action中，
  *       通过AdminManageAction中init_role方法完成权限资源基础数据的导入以及不同用户角色权限的分配 </p>
 
-* <p>Copyright: Copyright (c) 2012-2014</p>
 
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-4-27
-
-* @version LakeCloud_C2C 1.0
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

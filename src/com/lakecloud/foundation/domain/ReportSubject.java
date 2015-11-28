@@ -13,8 +13,6 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 举报主题，由超级管理员添加，用户举报商品时候需要选择一个主题，便于管理员处理举报信息
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

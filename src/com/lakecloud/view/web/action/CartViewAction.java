@@ -78,8 +78,7 @@ import com.lakecloud.view.web.tools.GoodsViewTools;
 
 /**
  * @info 购物控制器,包括购物车所有操作及订单相关操作
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+
  * 
  */
 @Controller

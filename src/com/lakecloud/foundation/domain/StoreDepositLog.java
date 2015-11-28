@@ -23,19 +23,7 @@ import com.lakecloud.core.domain.IdEntity;
  * 保证金数额由店铺等级控制，保证金缴纳后会在用户店铺页显示，缴纳保证金的店铺，用户购物更加放心
  * </p>
  * 
- * <p>
- * Copyright: Copyright (c) 2011-2014
- * </p>
- * 
- * <p>
- * Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net
- * </p>
- * 
- * @author erikzhang
- * 
- * @date 2014-5-8
- * 
- * @version LakeCloud_C2C 1.4
+ 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity

@@ -25,8 +25,6 @@ import com.lakecloud.view.web.tools.ArticleViewTools;
 
 /**
  * @info www.chinacloud.net版权所有,前台文章控制器，主要功能: 1、列表文章 2、显示文章
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
  * 
  */
 @Controller

@@ -29,9 +29,6 @@ import com.lakecloud.foundation.service.IUserService;
 
 /**
  * @info 微信商城客户端首页控制器，
- * @since V1.3
- * @version 1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net hz
  * 
  */
 @Controller

@@ -12,8 +12,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 投诉主题管理类，用来管理投诉主题信息，用户投诉都需要选择一个投诉主题，便于平台归类处理
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

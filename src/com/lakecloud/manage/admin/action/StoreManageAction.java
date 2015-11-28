@@ -84,15 +84,7 @@ import com.lakecloud.manage.admin.tools.StoreTools;
 
 * <p>Description:平台店铺管理控制器，用来列表显示店铺，添加店铺、修改店铺信息等操作 </p>
 
-* <p>Copyright: Copyright (c) 2011-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-5-8
-
-* @version LakeCloud_C2C 1.4
+ 
  */
 @Controller
 public class StoreManageAction {

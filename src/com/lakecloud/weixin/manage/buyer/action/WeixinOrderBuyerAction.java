@@ -64,9 +64,6 @@ import com.lakecloud.manage.admin.tools.MsgTools;
 
 /**
  * @info 微信客户端买家订单控制器，用于查看订单列表、查看订单详情、支付订单，确认收货
- * @since V1.3
- * @version 1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net hz 2013-11-26
  * 
  */
 @Controller

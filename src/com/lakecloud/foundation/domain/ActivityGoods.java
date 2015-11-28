@@ -16,8 +16,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 商城活动商品类,参加活动的商品提交到该类中进行管理，审核后通过后的商品在活动页显示，同时活动过期后系统定时器自动将处理活动商品
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

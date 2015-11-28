@@ -84,14 +84,7 @@ import com.lakecloud.pay.tenpay.util.TenpayUtil;
  * <p>
  * Description:
  * 在线支付回调控制器，处理支付回调信息，系统包括购物支付、预存款充值支付、金币兑换支付、店铺保证金缴纳支付，每种支付有对应的处理方式完成相关逻辑处理
- * </p>
- * 
- * <p>
- * Copyright: Copyright (c) 2011-2014
- * </p>
- * 
- * <p>
- * Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net
+
  * </p>
  * 
  * @author erikzhang

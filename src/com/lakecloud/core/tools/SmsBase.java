@@ -14,15 +14,7 @@ import java.net.URLEncoder;
 
 * <p>Description:系统手机短信发送类，结合第三方短信平台进行管理使用 </p>
 
-* <p>Copyright: Copyright (c) 2012-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-4-27
-
-* @version LakeCloud_C2C 1.3
+ 
  */
 public class SmsBase {
 	private String url;

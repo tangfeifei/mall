@@ -12,15 +12,7 @@ import javax.servlet.http.HttpServletResponseWrapper;
 
 * <p>Description:完成数据输出流的压缩工作，该类在web应用中的可以使用web服务器配置完成相同的功能,后续版本将会删除，仅仅保留学习使用 </p>
 
-* <p>Copyright: Copyright (c) 2012-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-4-27
-
-* @version LakeCloud_C2C 1.3
+ 
  */
 public class CompressionResponse extends HttpServletResponseWrapper {
 	protected HttpServletResponse response;

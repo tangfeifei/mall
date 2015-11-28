@@ -18,8 +18,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 个人主页SNS信息，用来显示用户分享的店铺、商品、心情等信息
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司里 www.chinacloud.net Hezeng
+ 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity

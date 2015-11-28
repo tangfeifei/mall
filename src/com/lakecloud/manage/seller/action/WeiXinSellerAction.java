@@ -61,8 +61,7 @@ import com.lakecloud.weixin.tools.WeixinTools;
 
 /**
  * @info 卖家微信商城控制器，卖家支付相应金币可以申请微信商城开通，开通商城后可以配置微信菜单及微信App相关信息，微信商城和卖家店铺直接对应
- * @since v1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+  
  * 
  */
 @Controller

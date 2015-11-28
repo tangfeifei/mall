@@ -26,16 +26,6 @@ import com.lakecloud.foundation.service.ISysConfigService;
 
 * <p>Description::系統基础过滤器，主要用在系统第一次运行时进入安装界面，引导用户安装系统，导入系统基础数据信息，
  * 对于资源信息如css等该过滤器将不进行首次安装拦截 </p>
-
-* <p>Copyright: Copyright (c) 2012-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-4-27
-
-* @version LakeCloud_C2C 1.3
  */
 @Component
 public class ShopFilter implements Filter {

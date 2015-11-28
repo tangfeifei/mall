@@ -21,8 +21,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 系统广告位管理类，系统广告使用广告位管理，一个广告位可以同时发布多个广告信息，随机出现一条或者固定显示一条
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

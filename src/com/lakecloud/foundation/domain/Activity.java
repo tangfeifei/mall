@@ -24,8 +24,7 @@ import com.lakecloud.core.domain.IdEntity;
 /**
  * @info 
  *       商城活动管理类,描述商城活动相关信息，商城活动由平台管理员发起，所有卖家都可以参加，参加的商品需要按照活动要求进行折扣，审核后的商品在对应的活动页面显示
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

@@ -20,8 +20,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 系统支付方式管理类，支付方式分为平台支付方式、店铺支付方式，平台支付方式可以接受所有用户对平台的付款，店铺支付方式接受买家对店铺的付款
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

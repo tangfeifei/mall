@@ -19,16 +19,7 @@ import org.apache.commons.logging.LogFactory;
 * <p>Title: CompressionFilter.java</p>
 
 * <p>Description:网页压缩过滤器，结合web.xml配置实现网页压缩，该过滤器在实际应用中可略去，web服务器均可以配置网页压缩功能 </p>
-
-* <p>Copyright: Copyright (c) 2012-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-4-27
-
-* @version LakeCloud_C2C 1.3
+ 
  */
 public class CompressionFilter implements Filter {
 

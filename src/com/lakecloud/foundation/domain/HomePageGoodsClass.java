@@ -13,8 +13,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 个人主页中商品分类管理类，用户个人主页中宝贝动态列表上方分类选项卡选择
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net Hezeng
+ 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity

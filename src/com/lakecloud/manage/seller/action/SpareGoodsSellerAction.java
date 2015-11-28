@@ -39,8 +39,7 @@ import com.lakecloud.view.web.tools.StoreViewTools;
 
 /**
  * @info 卖家闲置商品管理控制器，用来发布、修改、删除闲置商品信息
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang、hezeng 20130922
+  
  * 
  */
 @Controller

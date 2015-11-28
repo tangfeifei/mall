@@ -14,8 +14,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 聊天管理日志类，单个用户聊天记录的管理类
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net hezeng
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

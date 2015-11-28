@@ -15,8 +15,7 @@ import com.lakecloud.core.domain.IdEntity;
  * @info 
  *             店铺等级,由超级管理员添加，用户开店时申请店铺对应的等级，不同的店铺等级可以收取不同的费用，同时不同的店铺等级可以拥有不同的店铺模板
  *             、发布不同的商品、不同的图片空间大小等
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+  
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

@@ -46,8 +46,7 @@ import com.lakecloud.manage.admin.tools.BargainManageTools;
 
 /**
  * @info 今日特价管理控制器，用在平台管理员操作今日特价信息
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net wang、erikchang
+  
  * 
  */
 @Controller

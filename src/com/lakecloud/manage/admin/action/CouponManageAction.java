@@ -62,8 +62,7 @@ import com.sun.image.codec.jpeg.JPEGImageEncoder;
  * @info 优惠券控制管理器，管理商城系统优惠券信息 优惠券使用方法：
  *             1、管理员添加优惠券，包括优惠券面额、使用条件（订单满多少可以可以用），优惠券数量、使用时间区间
  *             2、优惠券只有平台管理员赠送用户才能获取 3、用户购物订单金额满足优惠券使用条件后可以使用优惠券
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Controller

@@ -17,8 +17,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 今日特价管理类
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net wang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

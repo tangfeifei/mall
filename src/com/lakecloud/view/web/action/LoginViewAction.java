@@ -51,13 +51,6 @@ import com.lakecloud.view.web.tools.ImageViewTools;
  * Description:
  * 用户登录、注册管理控制器，用来管理用户登录、注册、UC统一登录等功能,V1.3版本开始独立出来，为了方便外部系统（如UCenter等）的使用
  * </p>
- * 
- * <p>
- * Copyright: Copyright (c) 2014
- * </p>
- * 
- * <p>
- * Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net
  * </p>
  * 
  * @author erikzhang

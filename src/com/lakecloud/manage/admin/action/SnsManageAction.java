@@ -23,9 +23,9 @@ import com.lakecloud.view.web.tools.StoreViewTools;
 /**
  * 
  * 
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net hz 20131008
+ 
  * @info Sns后台管理控制器,查看会员动态和店铺动态详情，删除动态，设置动态是否可见
- * @since V1.3
+ 
  * 
  */
 @Controller

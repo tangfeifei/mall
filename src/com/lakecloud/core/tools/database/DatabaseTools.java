@@ -25,16 +25,7 @@ import com.lakecloud.core.tools.CommUtil;
 * <p>Title: DatabaseTools.java</p>
 
 * <p>Description: MySql的备份和还原,2012-08-28完善分卷备份、恢复 </p>
-
-* <p>Copyright: Copyright (c) 2012-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2011-06-29
-
-* @version LakeCloud_C2C 1.3
+ 
  */
 @Repository
 @SuppressWarnings("serial")

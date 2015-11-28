@@ -55,8 +55,7 @@ import com.lakecloud.manage.admin.tools.StoreTools;
 
 /**
  * @info 淘宝数据控制器 1.0版本 功能包括：淘宝csv导入
- * @since v1.2
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Controller

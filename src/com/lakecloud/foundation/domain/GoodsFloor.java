@@ -20,9 +20,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 首页楼层管理类,首页楼层商城管理员可以使用拖拽式管理完成楼层配置，商城首页按照配置的楼层信息显示对应的商品、品牌、广告
- * @since V1.2
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
- * 
+ 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity

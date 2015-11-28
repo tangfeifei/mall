@@ -12,14 +12,7 @@ import javax.imageio.ImageIO;
 * <p>Description:生成等比例高质量缩略图,V1.3后不再使用该类，保留可以作为学习研究使用 </p>
 
 * <p>Copyright: Copyright (c) 2012-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-4-27
-
-* @version LakeCloud_C2C 1.3
+ 
  */
 public class ImageScale {
 	private int width;

@@ -33,8 +33,7 @@ import com.lakecloud.foundation.service.IUserConfigService;
 
 /**
  * @info 团购活动平台管理控制器，用来添加（编辑、删除）团购信息、审核参团商品
- * @since V1.1
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Controller

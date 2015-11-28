@@ -24,8 +24,7 @@ import com.lakecloud.foundation.service.IUserConfigService;
 
 /**
  * @info 超级后台运营基础功能管理器,主要功能: 1、运营基本设置 2、积分规则管理
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+  
  * 
  */
 @Controller

@@ -15,8 +15,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 买就送套餐信息，记录买就送套餐购买
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

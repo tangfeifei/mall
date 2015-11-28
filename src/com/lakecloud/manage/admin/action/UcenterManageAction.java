@@ -17,8 +17,7 @@ import com.lakecloud.foundation.service.IUserConfigService;
 
 /**
  * @info UC配置信息管理控制器
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+  
  * 
  */
 @Controller

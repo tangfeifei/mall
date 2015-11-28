@@ -19,8 +19,7 @@ import com.lakecloud.foundation.service.INavigationService;
 
 /**
  * @info 前台导航工具类，查询显示对应的导航信息
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+
  * 
  */
 @Component

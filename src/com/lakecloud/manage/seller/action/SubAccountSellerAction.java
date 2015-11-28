@@ -44,8 +44,7 @@ import com.lakecloud.foundation.service.IUserService;
 
 /**
  * @info 卖家子账户管理，卖家根据店铺等级，可以有多个子账户，子账户可以协助卖家管理店铺，卖家自行添加子账户信息，并可以自行给子账户赋予相关卖家中心权限
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Controller

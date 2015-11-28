@@ -14,8 +14,6 @@ import com.lakecloud.foundation.domain.Store;
 
 /**
  * @info 微信信息管理类，系统可以接受用户发送的微信信息，并进行回复
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

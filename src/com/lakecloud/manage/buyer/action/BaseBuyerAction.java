@@ -49,8 +49,7 @@ import com.lakecloud.view.web.tools.StoreViewTools;
 
 /**
  * @info 买家中心基础管理控制器
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang hz
+  
  * 
  */
 @Controller

@@ -34,8 +34,7 @@ import com.lakecloud.foundation.service.IUserConfigService;
 
 /**
  * @info 系统文章管理控制器，用来发布、修改系统文章信息
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+  
  * 
  */
 @Controller

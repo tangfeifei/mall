@@ -33,10 +33,7 @@ import com.lakecloud.foundation.service.IUserConfigService;
 
 /**
  * @info 商城后台订单管理器
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
- * 
- */
+  */
 @Controller
 public class OrderManageAction {
 	@Autowired

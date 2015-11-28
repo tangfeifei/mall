@@ -20,9 +20,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 商城广告管理类，用来管理商城广告信息，商城广告使用js调用管理，目前支持幻灯广告、滚动广告、图片广告、文字广告，可以在商城任意位置调用
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
- * 
+ 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity

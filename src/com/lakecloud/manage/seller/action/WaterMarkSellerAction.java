@@ -30,8 +30,7 @@ import com.lakecloud.foundation.service.IWaterMarkService;
 
 /**
  * @info 水印管理控制器，卖家可以管理图片的文字水印、图片水印
- * @since v1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+  
  * 
  */
 @Controller

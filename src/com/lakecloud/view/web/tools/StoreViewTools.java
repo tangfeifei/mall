@@ -29,8 +29,7 @@ import com.lakecloud.foundation.service.IUserService;
 
 /**
  * @info 店铺工具类
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+
  * 
  */
 @Component

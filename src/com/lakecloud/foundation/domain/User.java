@@ -39,15 +39,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 * <p>Description: 用户类，所有用户均使用该类进行管理，包括普通用户、管理员、操作员等</p>
 
-* <p>Copyright: Copyright (c) 2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-5-7
-
-* @version LakeCloud_C2C 1.4
+ 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity

@@ -31,9 +31,7 @@ import com.lakecloud.foundation.service.IUserConfigService;
 
 /**
  * @info 商城卖家品牌管理控制器，商城自V1.3版开始卖家可以提交品牌信息，审核通过后该品牌将会作为商城品牌信息使用，弥补了商城系统品牌信息不足的缺陷
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net hezeng
- * @Date 201309-11
+ 
  * 
  */
 @Controller

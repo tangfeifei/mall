@@ -54,9 +54,6 @@ import com.lakecloud.weixin.tools.WeixinTools;
 
 /**
  * @info 微信店铺客户端首页处理控制器
- * @since V1.3
- * @version 1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang hz
  * 
  */
 @Controller

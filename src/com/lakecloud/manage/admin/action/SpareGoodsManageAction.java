@@ -41,8 +41,7 @@ import com.lakecloud.foundation.service.IUserConfigService;
 
 /**
  * @info 平台闲置商品管理控制器，用来管理所有闲置商品信息
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang hz
+ 
  * 
  */
 @Controller

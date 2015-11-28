@@ -22,9 +22,7 @@ import com.lakecloud.core.domain.IdEntity;
  *       商城购物车类，根据店铺区分具体购物车内容信息,V1.3版之前购物车再订单提交前是保存到session中，为了更好地结合集群及多域名，V1.3版开始
  *       ，购物车信息直接保存到数据库中，未登录用户根据随机唯一Id保存，已经登录的用户根据User来保存，未登录用户购物车间隔1天自动删除，
  *       已经登录用户购物车保存7天，7天未提交为订单自动删除,购物车信息存在及时性，不加入缓存管理
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
- * 
+ 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity

@@ -17,8 +17,7 @@ import com.lakecloud.core.domain.IdEntity;
 /**
  * @info 快递公司管理，系统默认有多个快递公司信息，用户可以在订单页面，查询快递配送信息，V1.3版开始，目前使用快递100接口查询，
  *             后续公司内部自己设计快递查询接口 快递公司为系统数据，管理员随意添加需要遵循快递100的公司编码，和程序绑定使用
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

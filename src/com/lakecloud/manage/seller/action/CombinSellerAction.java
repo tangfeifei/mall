@@ -37,10 +37,7 @@ import com.lakecloud.foundation.service.IUserService;
 
 /**
  * @info 卖家中心“组合销售”管理器
- * @since V1.3
- * @version 1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
- * 
+ 
  */
 @Controller
 public class CombinSellerAction {

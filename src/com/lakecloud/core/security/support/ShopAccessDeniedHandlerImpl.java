@@ -26,14 +26,6 @@ import com.lakecloud.foundation.domain.User;
 * <p>Description:  重写SpringSecurity权限控制接口，系统采用二次登陆机制，用户从前台登陆，仅仅加载非管理员权限，从管理员页面登陆，通过该控制器加载管理员权限</p>
 
 * <p>Copyright: Copyright (c) 2012-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-4-27
-
-* @version LakeCloud_C2C 1.3
  */
 public class ShopAccessDeniedHandlerImpl implements AccessDeniedHandler {
 	public static final String SPRING_SECURITY_ACCESS_DENIED_EXCEPTION_KEY = "SPRING_SECURITY_403_EXCEPTION";

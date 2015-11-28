@@ -30,9 +30,6 @@ import com.lakecloud.foundation.service.IUserService;
 
 /**
  * @info 微信客户端买家用户中心
- * @since V1.3
- * @version 1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net hz 2013-11-25
  * 
  */
 @Controller

@@ -32,9 +32,7 @@ import com.lakecloud.weixin.service.IVMenuService;
 
 /**
  * @info 系统验证控制器
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
- * 
+
  */
 @Controller
 public class VerifyAction {

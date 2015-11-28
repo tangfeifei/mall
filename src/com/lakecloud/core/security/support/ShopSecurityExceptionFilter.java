@@ -32,16 +32,7 @@ import org.springframework.util.Assert;
 * <p>Title: ShopSecurityExceptionFilter.java</p>
 
 * <p>Description: 重写SpringSecurity异常过滤器，为了解决超级管理后台和普通会员后台无权限操作的不同导向</p>
-
-* <p>Copyright: Copyright (c) 2012-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-4-27
-
-* @version LakeCloud_C2C 1.3
+ 
  */
 public class ShopSecurityExceptionFilter extends SpringSecurityFilter implements
 		InitializingBean {

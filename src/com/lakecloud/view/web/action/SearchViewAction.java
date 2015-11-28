@@ -45,8 +45,6 @@ import com.lakecloud.view.web.tools.StoreViewTools;
 
 /**
  * @info 商品搜索控制器，商城搜索支持关键字全文搜索,店铺搜索使用数据库关键字搜索
- * @since v1.2
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
  * 
  */
 @Controller

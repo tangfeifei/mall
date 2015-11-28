@@ -29,8 +29,7 @@ import com.lakecloud.foundation.service.IUserService;
 
 /**
  * @info 系统日志管理类，这里使用Spring环绕通知和异常通知进行动态管理
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+  
  * 
  */
 

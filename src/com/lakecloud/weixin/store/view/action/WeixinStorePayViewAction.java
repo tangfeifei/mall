@@ -92,14 +92,6 @@ import com.lakecloud.pay.tenpay.util.TenpayUtil;
  * </p>
  * 
  * <p>
- * Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net
- * </p>
- * 
- * @author hezeng
- * 
- * @date 2014-4-27
- * 
- * @version lakecloud_cc 1.3
  */
 @Controller
 public class WeixinStorePayViewAction {

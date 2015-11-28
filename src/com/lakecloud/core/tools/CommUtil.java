@@ -64,20 +64,7 @@ import com.sun.image.codec.jpeg.JPEGImageEncoder;
  * <p>
  * Description:系统工具类，用来快速处理,系统默认将该工具类添加到ModelAndView中，前台可以使用$!CommUtil.xxx调用该工具类
  * </p>
- * 
- * <p>
- * Copyright: Copyright (c) 2012-2014
- * </p>
- * 
- * <p>
- * Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net
- * </p>
- * 
- * @author erikzhang
- * 
- * @date 2014-4-27
- * 
- * @version LakeCloud_C2C 1.3
+  
  */
 public class CommUtil {
 	private static final java.text.SimpleDateFormat dateFormat = new

@@ -42,8 +42,7 @@ import com.lakecloud.view.web.tools.AlbumViewTools;
 
 /**
  * @info 卖家相册中心管理控制器
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Controller

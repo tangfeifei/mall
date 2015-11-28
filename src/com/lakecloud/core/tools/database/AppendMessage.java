@@ -8,16 +8,7 @@ import java.util.Date;
 * <p>Title: AppendMessage.java</p>
 
 * <p>Description:数据库工具类,用来拼接mysql语句信息，加入公司信息 </p>
-
-* <p>Copyright: Copyright (c) 2012-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-4-27
-
-* @version LakeCloud_C2C 1.3
+ 
  */
 public class AppendMessage {
 
@@ -33,7 +24,7 @@ public class AppendMessage {
 			strBuilder = new StringBuilder();
 			strBuilder.append("/*" + "\n").append("Data Transfer" + "\n")
 					.append("Author: lakecloud" + "\n").append(
-							"company:江苏太湖云计算信息技术股份有限公司" + "\n").append(
+							"company:Action" + "\n").append(
 							"Date: " + smf.format(new Date()) + "\n").append(
 							"*/" + "\n");
 		} catch (Exception e) {

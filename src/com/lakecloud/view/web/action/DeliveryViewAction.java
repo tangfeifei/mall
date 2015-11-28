@@ -21,8 +21,7 @@ import com.lakecloud.foundation.service.IUserConfigService;
 
 /**
  * @info 买就送前台管理控制器，用来管理买就送信息
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+
  * 
  */
 @Controller

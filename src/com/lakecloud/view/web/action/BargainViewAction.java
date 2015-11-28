@@ -27,8 +27,6 @@ import com.lakecloud.foundation.service.IUserConfigService;
 
 /**
  * @info 今日特价前端控制，包括特价页面显示等
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
  * 
  */
 @Controller

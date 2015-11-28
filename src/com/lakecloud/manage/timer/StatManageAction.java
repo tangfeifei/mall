@@ -63,8 +63,7 @@ import com.lakecloud.manage.admin.tools.StatTools;
 
 /**
  * @info 系统定制器类，每间隔半小时执行一次，用在数据统计及团购开启关闭上,其他按小时计算的定制器都可以在这里增加代码控制
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+  
  * 
  */
 @Component(value = "shop_stat")

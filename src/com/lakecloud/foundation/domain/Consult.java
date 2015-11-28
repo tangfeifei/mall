@@ -16,8 +16,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 产品咨询管理类,用来管理用户对卖家商品的咨询及卖家对咨询的回复
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

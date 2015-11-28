@@ -18,9 +18,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 闲置商品首页楼层管理类，首页显示楼层信息
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net hezeng
- * @Date 20130927
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

@@ -20,8 +20,7 @@ import com.lakecloud.core.domain.IdEntity;
  * @info 
  *       举报类，记录所有商品举报信息，举报信息超级管理可以看到，管理员根据举报情况进行相关处理，可以将举报商品下架，如果是恶意举报也可以将该举报用户禁止举报
  *       ，禁止后可以在用户管理中恢复用户举报功能
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

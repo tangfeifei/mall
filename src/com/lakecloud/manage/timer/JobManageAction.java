@@ -36,9 +36,7 @@ import com.lakecloud.lucene.LuceneVo;
 
 /**
  * @info 系统定时任务控制器，每天00:00:01秒执行
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
- * 
+  
  */
 @Component(value = "shop_job")
 public class JobManageAction {

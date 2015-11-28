@@ -33,7 +33,7 @@ import com.lakecloud.foundation.service.IUserConfigService;
 
 /**
  * @info 通知模板管理控制器，用来管理系统各类通知模板，包括站内短信通知、邮件通知、手机短信通知
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+  
  * 
  */
 @Controller

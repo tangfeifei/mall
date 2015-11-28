@@ -17,15 +17,6 @@ import com.lakecloud.core.annotation.Lock;
 
 * <p>Description: 系统域模型基类，该类包含3个常用字段，其中id为自增长类型，该类实现序列化，只有序列化后才可以实现tomcat集群配置session共享</p>
 
-* <p>Copyright: Copyright (c) 2012-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-4-27
-
-* @version LakeCloud_C2C 1.3
  */
 @MappedSuperclass
 public class IdEntity implements Serializable {

@@ -11,15 +11,7 @@ import java.util.Date;
 
 * <p>Description:物理文件排序管理类，该类可以对物理存在的文件进行相关排序 </p>
 
-* <p>Copyright: Copyright (c) 2012-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-4-27
-
-* @version LakeCloud_C2C 1.3
+ 
  */
 public class FileSorter implements Comparator<File> {
 	/** 默认排序的方式， 按目录，文件排序TYPE_DIR */

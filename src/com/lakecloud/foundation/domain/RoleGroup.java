@@ -15,8 +15,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 角色分类管理类，用来管理角色信息，使用角色分类使得角色管理更加清晰
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

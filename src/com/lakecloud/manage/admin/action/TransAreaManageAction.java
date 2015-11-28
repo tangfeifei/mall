@@ -53,9 +53,7 @@ import com.lakecloud.foundation.service.IUserService;
 
 /**
  * @info 运费区域管理控制器，用来管理控制系统配送区域信息，和系统常用区域不同
- * @info 江苏太湖云计算信息技术股份有限公司
- * @since v1.3
- * @author www.chinacloud.net erikchang
+ 
  * 
  */
 @Controller

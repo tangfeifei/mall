@@ -36,9 +36,7 @@ import com.lakecloud.manage.admin.tools.UserTools;
 
 /**
  * @info 商城内置聊天控制器，商城自V1.3版开始增加网页聊天功能，卖家无须设置客服及时聊天工具即可完成聊天功能
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net hezeng
- * @Date 20130902
+
  * 
  */
 @Controller

@@ -24,16 +24,7 @@ import com.lakecloud.foundation.service.IUserService;
 * <p>Title: StoreTools.java</p>
 
 * <p>Description: 后台管理店铺、商品工具类</p>
-
-* <p>Copyright: Copyright (c) 2011-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-5-8
-
-* @version LakeCloud_C2C 1.4
+ 
  */
 @Component
 public class StoreTools {

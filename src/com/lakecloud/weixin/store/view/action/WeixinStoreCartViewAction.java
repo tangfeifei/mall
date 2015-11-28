@@ -79,15 +79,6 @@ import com.lakecloud.view.web.tools.GoodsViewTools;
 * <p>Title: WeixinStoreCartViewAction.java</p>
 
 * <p>Description:微信店铺购物控制器,包括购物车所有操作及订单相关操作 </p>
-
-* <p>Copyright: Copyright (c) 2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author hz
-
-* @date 2014-4-27
-
 * @version LakeCloud_C2C 1.3
  */
 @Controller

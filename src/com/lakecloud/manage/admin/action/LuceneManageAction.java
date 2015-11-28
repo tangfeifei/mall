@@ -36,8 +36,7 @@ import com.lakecloud.lucene.LuceneVo;
 
 /**
  * @info 全文检索处理器
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Controller

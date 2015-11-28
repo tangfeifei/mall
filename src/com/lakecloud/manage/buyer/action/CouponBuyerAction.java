@@ -21,9 +21,8 @@ import com.lakecloud.foundation.service.IUserConfigService;
 
 /**
  * @info 买家优惠券管理控制器，商场管理员赠送给买家优惠券后，买家可以在这里查看优惠券信息
- * @since V1.3
- * @version 1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
+ 
  * 
  */
 @Controller

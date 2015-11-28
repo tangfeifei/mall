@@ -16,8 +16,6 @@ import com.lakecloud.foundation.domain.Store;
 
 /**
  * @info 微信商城购买日志类
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

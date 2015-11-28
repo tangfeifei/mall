@@ -20,9 +20,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 闲置商品分类管理类，商城所有注册用户都可以发布闲置二手商品，二手商品只支持线下支付交易，目前不支持在线支付交易
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net hezeng
- * @Date 20130922
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

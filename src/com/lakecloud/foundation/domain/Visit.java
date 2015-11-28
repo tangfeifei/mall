@@ -16,8 +16,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 最近来访实体类，用来记录个人主页中最近来访人
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net Hezeng
+ 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity

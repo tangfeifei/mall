@@ -16,15 +16,6 @@ import com.lakecloud.foundation.domain.User;
 
 * <p>Description: SpringSecurity用户获取工具类，该类的静态方法可以直接获取已经登录的用户信息</p>
 
-* <p>Copyright: Copyright (c) 2012-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-4-27
-
-* @version LakeCloud_C2C 1.3
  */
 public class SecurityUserHolder {
 

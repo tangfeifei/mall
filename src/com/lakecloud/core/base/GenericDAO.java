@@ -15,11 +15,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 * <p>Description:统所有数据库操作的基类，采用JDK5泛型接口完成POJO类型注入</p>
 
 * <p>Copyright: Copyright (c) 2012-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
 * @date 2014-4-27
 
 * @version LakeCloud_C2C 1.0

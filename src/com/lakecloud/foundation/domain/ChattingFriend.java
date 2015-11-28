@@ -13,8 +13,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 会话好友管理类，用于查询最近联系人 当用户与对方会话，自动将对方添加为自己的最近联系人，对方也会将用户添加为他的最近联系人
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net hezeng 2013-09-03
+  
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity

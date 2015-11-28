@@ -14,8 +14,7 @@ import com.lakecloud.foundation.service.IUserService;
 
 /**
  * @info 在线用户查询管理工具类，查询所有登录用户，判断用户是否在线
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Component

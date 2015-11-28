@@ -39,8 +39,7 @@ import com.lakecloud.manage.seller.Tools.BargainSellerTools;
 
 /**
  * @info 天天特价卖家控制器 自V1.3版开始
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net wang
+ 
  * 
  */
 @Controller

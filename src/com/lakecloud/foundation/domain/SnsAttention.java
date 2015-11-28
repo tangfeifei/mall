@@ -13,8 +13,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 个人主页关注管理类,可以作为关注列表，查看粉丝
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net hezeng 20130815
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

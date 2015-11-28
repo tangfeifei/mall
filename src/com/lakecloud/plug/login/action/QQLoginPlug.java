@@ -38,8 +38,7 @@ import com.lakecloud.foundation.service.IUserService;
 
 /**
  * @info QQ登录插件，该插件完成QQ登录授权，登录后自动完成用户注册并自动登录，默认注册用户密码为123456
- * @since V1.2
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+  
  * 
  */
 @Controller

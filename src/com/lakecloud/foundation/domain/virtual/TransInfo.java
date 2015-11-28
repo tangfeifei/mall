@@ -5,9 +5,7 @@ import java.util.List;
 
 /**
  * @info 该类不对应任何数据表，用在解析快递接口数据使用
- * @since v1.3
- * @version V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 public class TransInfo {

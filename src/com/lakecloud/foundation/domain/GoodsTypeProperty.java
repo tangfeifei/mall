@@ -13,8 +13,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 商品类型属性
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net wang 2012-06-25
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

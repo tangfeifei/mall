@@ -37,8 +37,7 @@ import com.lakecloud.foundation.service.IUserConfigService;
 
 /**
  * @info 卖家中心投诉管理，V1.3版开始将卖家投诉中心、买家投诉分开管理，更加合理
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+  
  * 
  */
 @Controller

@@ -31,9 +31,9 @@ import com.lakecloud.foundation.service.IUserConfigService;
 /**
  * 图片管理控制器
  * 
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net hz 20131008
+ 
  * @info 平台图片管理控制器，删除数据的同时也删除物理文件
- * @since V1.3
+  
  * 
  */
 @Controller

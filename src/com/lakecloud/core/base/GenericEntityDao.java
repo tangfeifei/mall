@@ -22,10 +22,6 @@ import com.lakecloud.core.exception.CanotRemoveObjectException;
 
 * <p>Description: 数据库操作基础DAO，系统使用JPA完成所有数据库操作，默认JPA的实现为Hibernate </p>
 
-* <p>Copyright: Copyright (c) 2012-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
 * @author erikzhang
 
 * @date 2014-4-27

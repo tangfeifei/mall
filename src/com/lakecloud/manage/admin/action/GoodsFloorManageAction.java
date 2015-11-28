@@ -54,8 +54,7 @@ import com.lakecloud.manage.admin.tools.GoodsFloorTools;
 
 /**
  * @info 商品楼层管理控制器，通过拖拽式管理完成首页楼层管理，平台管理员可以任意管理控制商城首页楼层信息
- * @since v1.2
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Controller

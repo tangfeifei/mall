@@ -19,8 +19,7 @@ import com.lakecloud.core.domain.IdEntity;
 /**
  * @info 评价管理类,用户订单完成后，可以对订单商品进行打分评价，同时卖家也可以对买家进行评价，评价打分信息系统自动计算，以此显示店铺信用信息
  *       、商品描述相符信息及用户的购买信用信息
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+  
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

@@ -14,8 +14,7 @@ import com.lakecloud.core.domain.IdEntity;
 /**
  * @info 系统文章类，管理系统文章，包括注册协议、商铺协议等等
  *             文章通过mark进行访问，使用urlrewrite静态化处理，将mark作为参数传递
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

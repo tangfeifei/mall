@@ -34,10 +34,7 @@ import com.lakecloud.view.web.tools.ImageViewTools;
 
 /**
  * @info 微信店铺客户端注册、登录管理控制器
- * @since V1.3
- * @version 1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang hz
- * 
+
  */
 @Controller
 public class WeixinStoreLoginViewAction {

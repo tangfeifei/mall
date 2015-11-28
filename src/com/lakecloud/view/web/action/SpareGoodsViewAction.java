@@ -38,8 +38,6 @@ import com.lakecloud.view.web.tools.SpareGoodsViewTools;
  * 
  * @author hezeng 2013-09-26
  * @info 闲置商品控制器,用来查看前台闲置商品首页、列表以及详细页
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net hz
  * 
  */
 @Controller

@@ -15,8 +15,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 店铺导航管理类，用来描述店铺导航信息，在店铺默认导航外，卖家可以自定义导航信息
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+  
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

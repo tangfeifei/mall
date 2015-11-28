@@ -58,8 +58,7 @@ import com.lakecloud.uc.api.UCClient;
 
 /**
  * @info 平台管理基础控制，这里包含平台管理的基础方法及一些系统常用请求
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+  
  * 
  */
 @Controller

@@ -33,9 +33,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 * <p>Description: 商品实体类,用来描述系统商品信息，系统核心实体类</p>
 
-* <p>Copyright: Copyright (c) 2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
+ 
 
 * @author erikzhang
 

@@ -23,15 +23,6 @@ import com.lakecloud.core.tools.CommUtil;
 
 * <p>Description: Eacache文件缓存处理过滤器，系统相对固定页面及资源文件，纳入缓存管理，避免每次都重复加载资源文件</p>
 
-* <p>Copyright: Copyright (c) 2012-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-4-27
-
-* @version LakeCloud_C2C 1.3
  */
 public class PageCacheFiler extends SimplePageFragmentCachingFilter {
 	private final static String FILTER_URL_PATTERNS = "patterns";

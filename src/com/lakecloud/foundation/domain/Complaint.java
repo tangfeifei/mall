@@ -21,8 +21,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 投诉管理类,管理系统投诉
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

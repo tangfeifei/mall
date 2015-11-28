@@ -39,9 +39,7 @@ import com.lakecloud.foundation.service.IUserConfigService;
 
 /**
  * @info 常用区域管理控制器，用来管理控制系统常用区域信息，常用区域主要用在买家添加配送地址、买家住址信息等，默认为中国大陆三级行政区域信息，平台管理员可以任意管理该信息
- * @info 江苏太湖云计算信息技术股份有限公司
- * @since v1.3
- * @author www.chinacloud.net erikchang
+  
  * 
  */
 @Controller

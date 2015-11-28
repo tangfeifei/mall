@@ -25,15 +25,7 @@ import com.lakecloud.uc.api.XMLHelper;
 
 * <p>Description: 重写SpringSecurity登录验证过滤器,验证器重新封装封装用户登录信息，可以任意控制用户与外部程序的接口，如整合UC论坛等等</p>
 
-* <p>Copyright: Copyright (c) 2012-2014</p>
 
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-4-27
-
-* @version LakeCloud_C2C 1.3
  */
 public class LoginAuthenticationFilter extends AuthenticationProcessingFilter {
 	@Autowired

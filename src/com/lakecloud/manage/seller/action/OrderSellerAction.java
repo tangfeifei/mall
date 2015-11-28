@@ -81,8 +81,7 @@ import com.lakecloud.view.web.tools.StoreViewTools;
 
 /**
  * @info 卖家订单控制器，卖家中心订单管理所有控制器都在这里
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+  
  * 
  */
 @Controller

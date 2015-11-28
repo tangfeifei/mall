@@ -11,8 +11,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 系统导航类,显示在前端页面的导航位置，包括顶部导航、中间位置、底部导航
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

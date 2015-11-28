@@ -18,8 +18,7 @@ import com.lakecloud.core.domain.IdEntity;
  * @info 
  *             团购管理控制类，用来描述系统团购信息，团购由超级管理员发起，所有卖家都可以申请参加，多个团购时间不允许交叉，团购商品审核通过后在对应的团购活动中显示
  *             ,团购到期后，系统自恢复团购商品为普通商品
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+  
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

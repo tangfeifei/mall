@@ -17,8 +17,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 退款日志类,用来记录店铺对买家的退款日志信息
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

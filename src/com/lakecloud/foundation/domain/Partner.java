@@ -13,8 +13,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 网站管理 合作伙伴,在首页底部合作伙伴位置显示
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 wang 2012-06-29
+ 
  * 
  */
 

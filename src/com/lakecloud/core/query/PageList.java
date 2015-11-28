@@ -13,15 +13,6 @@ import com.lakecloud.core.query.support.IQuery;
 * <p>Description:实现通过调用IQuery实现分页处理，其它特殊形式的分页查询需求只需要继承该类即可，比如DbPageList。
  * 具体的分页查询算法可以根据实际应用中的记录数、响应时间要求等选择适合的查询处理器IQuery </p>
 
-* <p>Copyright: Copyright (c) 2012-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-4-27
-
-* @version LakeCloud_C2C 1.3
  */
 public class PageList implements IPageList {
 	private int rowCount;// 记录数

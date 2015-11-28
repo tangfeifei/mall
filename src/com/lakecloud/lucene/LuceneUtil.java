@@ -38,9 +38,7 @@ import com.lakecloud.core.tools.CommUtil;
 
 /**
  * @info lucene搜索工具类,用来写入索引，搜索数据
- * @version 1.0
- * @since V1.3
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 public class LuceneUtil {

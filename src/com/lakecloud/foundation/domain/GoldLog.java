@@ -17,8 +17,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 金币日志类，记录用户所有的金币日志记录信息，包括金币增加、金币扣除
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

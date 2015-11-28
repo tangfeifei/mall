@@ -45,9 +45,7 @@ import com.lakecloud.pay.paypal.PaypalTools;
 
 /**
  * @info 在线支付工具类，用来生成主流常见支付平台的在线支付信息，并提交到支付平台;V1.3版本增加Paypal在线支付，及支付宝手机网页在线支付
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
- * 
+ 
  */
 @Component
 public class PayTools {

@@ -20,8 +20,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 商品分类管理类，用来管理商城商品分类信息
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 wang、erikchang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

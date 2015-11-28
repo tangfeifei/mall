@@ -21,8 +21,7 @@ import com.lakecloud.core.domain.IdEntity;
  * @info 会话管理类，该类只用于生成会话以及会话记录的查询与保存，user1和user2分别对应会话中的两个用户，保存记录时哪个用户首先发送信息
  *       ，该用户为user1 ， 如果user1和user2的会话记录已经存在，则在已经存在的会话中保存聊天记录，没有则新建，
  *       查询记录时只要这两个用户对应上就可以，没有先后顺序，
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net hezeng 2013-09-02
+ 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity

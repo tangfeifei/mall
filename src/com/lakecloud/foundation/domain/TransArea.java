@@ -18,9 +18,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 运费区域管理类，用来管理配送模板的配送区域，如：华东->安徽->安庆
- * @info 江苏太湖云计算信息技术股份有限公司
- * @since V1.3
- * @author www.chinacloud.net erikchang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

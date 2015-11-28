@@ -38,8 +38,7 @@ import com.lakecloud.foundation.service.IUserService;
 
 /**
  * @info 新浪登录插件,完成新浪账号登录返回到商城系统，登录成功返回自动完成用户注册并登陆，跳转到绑定页面，用户可以选择修改默认密码123456，也可以绑定已有用户
- * @since v1.2
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Controller

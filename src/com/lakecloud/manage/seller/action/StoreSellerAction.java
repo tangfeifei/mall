@@ -74,10 +74,7 @@ import com.lakecloud.view.web.tools.StoreViewTools;
  * <p>
  * Copyright: Copyright (c) 2011-2014
  * </p>
- * 
- * <p>
- * Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net
- * </p>
+  
  * 
  * @author erikzhang
  * 

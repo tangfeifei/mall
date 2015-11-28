@@ -8,8 +8,7 @@ import com.lakecloud.core.tools.CommUtil;
 /**
  * @title 货币显示处理工具类
  * @detail 包含以下内容： 1、四舍五入求值 2、针对不同的格式化要求：万，百万，亿等 3、会计格式的货币值：添加','符号 4、非科学计数法的货币值
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
- * @version 1.0
+
  */
 public class MoneyUtil {
 

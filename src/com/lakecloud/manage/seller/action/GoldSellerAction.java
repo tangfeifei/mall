@@ -45,13 +45,7 @@ import com.lakecloud.pay.tools.PayTools;
 
 * <p>Copyright: Copyright (c) 2014</p>
 
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-5-8
-
-* @version LakeCloud_C2C 1.4
+ 
  */
 @Controller
 public class GoldSellerAction {

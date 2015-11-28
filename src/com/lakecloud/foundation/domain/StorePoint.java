@@ -17,8 +17,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 店铺评分统计类,通过定时器类计算店铺评分信息，默认定时器每隔半小时计算一次
- * @since v1.2
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

@@ -19,9 +19,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 店铺分类实体类，用来描述管理系统店铺分类，用户开设店铺必须选择对应的店铺分类
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
- * 
+  
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity

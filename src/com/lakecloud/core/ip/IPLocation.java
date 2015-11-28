@@ -6,15 +6,6 @@
 
 * <p>Description: 纯真ip查询,该类用来读取地址信息</p>
 
-* <p>Copyright: Copyright (c) 2012-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-4-27
-
-* @version LakeCloud_C2C 1.3
  */
 public class IPLocation {
 	private String country;

@@ -45,13 +45,6 @@ import com.lakecloud.view.web.tools.StoreViewTools;
 
 * <p>Description:前台店铺控制器，前端店铺所有信息均在该控制器进行操作显示 </p>
 
-* <p>Copyright: Copyright (c) 2011-2014</p>
-
-* <p>Company: 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net</p>
-
-* @author erikzhang
-
-* @date 2014-5-9
 
 * @version LakeCloud_C2C 1.4
  */

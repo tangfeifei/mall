@@ -36,8 +36,7 @@ import com.lakecloud.view.web.tools.StoreViewTools;
 
 /**
  * @info 卖家后台基础管理器 主要功能包括卖家后台的基础管理、快捷菜单设置等
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Controller

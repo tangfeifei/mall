@@ -20,8 +20,7 @@ import com.lakecloud.core.domain.IdEntity;
 
 /**
  * @info 站内短信类，用户之间可以根据用户名发送站内短信息
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
+ 
  * 
  */
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

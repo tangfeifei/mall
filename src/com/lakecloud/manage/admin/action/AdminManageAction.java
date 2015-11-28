@@ -92,9 +92,7 @@ import com.lakecloud.weixin.store.view.action.WeixinStoreCartViewAction;
 
 /**
  * @info 超级管理员管理控制器
- * @since V1.0
- * @author 江苏太湖云计算信息技术股份有限公司 www.chinacloud.net erikchang
- * 
+  
  */
 @Controller
 public class AdminManageAction implements ServletContextAware {
